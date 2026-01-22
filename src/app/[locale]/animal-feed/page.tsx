@@ -1,39 +1,66 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
-import { motion } from "framer-motion";
-import { Download, FileText } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Download, FileText, Eye, X, ImageIcon } from "lucide-react";
 
-const animalFeedProducts = [
+type FileType = "pdf" | "image";
+
+interface AnimalFeedProduct {
+  id: string;
+  name: string;
+  nameEn: string;
+  file: string;
+  fileType: FileType;
+}
+
+const animalFeedProducts: AnimalFeedProduct[] = [
   {
     id: "feed-n-more",
     name: "Feed 'n' More",
     nameEn: "Feed 'n' More",
-    pdf: "/pdfs/animal-feed/feed-n-more.pdf",
+    file: "/pdfs/animal-feed/feed-n-more.pdf",
+    fileType: "pdf",
   },
   {
     id: "calfpremium-50",
     name: "Σκόνη Γάλακτος CalfPremium 50",
     nameEn: "Milk Powder CalfPremium 50",
-    pdf: "/pdfs/animal-feed/calfpremium-50.pdf",
+    file: "/pdfs/animal-feed/calfpremium-50.pdf",
+    fileType: "pdf",
   },
   {
     id: "calfbest-12",
     name: "Σκόνη Γάλακτος CalfBest 12",
     nameEn: "Milk Powder CalfBest 12",
-    pdf: "/pdfs/animal-feed/calfbest-12.pdf",
+    file: "/pdfs/animal-feed/calfbest-12.jpg",
+    fileType: "image",
   },
   {
     id: "lambkid-50nmore",
     name: "Σκόνη Γάλακτος LambKid 50'n'More",
     nameEn: "Milk Powder LambKid 50'n'More",
-    pdf: "/pdfs/animal-feed/lambkid-50nmore.pdf",
+    file: "/pdfs/animal-feed/lambkid-50nmore.pdf",
+    fileType: "pdf",
   },
 ];
 
 export default function AnimalFeedPage() {
   const t = useTranslations("animalFeed");
   const locale = useLocale();
+  const [selectedProduct, setSelectedProduct] = useState<AnimalFeedProduct | null>(null);
+
+  const openModal = (product: AnimalFeedProduct) => {
+    setSelectedProduct(product);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    setSelectedProduct(null);
+    document.body.style.overflow = "auto";
+  };
 
   return (
     <>
@@ -81,22 +108,37 @@ export default function AnimalFeedPage() {
                 >
                   <div className="flex items-center gap-4 rounded-2xl border border-white/40 bg-white/60 backdrop-blur-sm px-5 py-4 shadow-lg shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:shadow-xl">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <FileText className="h-6 w-6" />
+                      {product.fileType === "image" ? (
+                        <ImageIcon className="h-6 w-6" />
+                      ) : (
+                        <FileText className="h-6 w-6" />
+                      )}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold text-foreground truncate">
                         {locale === "en" ? product.nameEn : product.name}
                       </p>
-                      <p className="text-sm text-muted-foreground">PDF</p>
+                      <p className="text-sm text-muted-foreground uppercase">
+                        {product.fileType === "image" ? "JPG" : "PDF"}
+                      </p>
                     </div>
-                    <a
-                      href={product.pdf}
-                      download
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary text-white shadow-md shadow-primary/25 transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 hover:scale-105"
-                      title={t("downloadCatalogue")}
-                    >
-                      <Download className="h-5 w-5" />
-                    </a>
+                    <div className="flex shrink-0 gap-2">
+                      <button
+                        onClick={() => openModal(product)}
+                        className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/25 hover:scale-105"
+                        title={locale === "en" ? "View" : "Προβολή"}
+                      >
+                        <Eye className="h-5 w-5" />
+                      </button>
+                      <a
+                        href={product.file}
+                        download
+                        className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-md shadow-primary/25 transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 hover:scale-105"
+                        title={t("downloadCatalogue")}
+                      >
+                        <Download className="h-5 w-5" />
+                      </a>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -104,6 +146,73 @@ export default function AnimalFeedPage() {
           </div>
         </div>
       </section>
+
+      {/* Modal Viewer */}
+      <AnimatePresence>
+        {selectedProduct && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+            onClick={closeModal}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              className="relative flex h-[90vh] w-full max-w-5xl flex-col rounded-2xl bg-white shadow-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between border-b border-border/50 px-6 py-4">
+                <h3 className="font-semibold text-foreground truncate pr-4">
+                  {locale === "en" ? selectedProduct.nameEn : selectedProduct.name}
+                </h3>
+                <div className="flex items-center gap-3">
+                  <a
+                    href={selectedProduct.file}
+                    download
+                    className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-primary/90"
+                  >
+                    <Download className="h-4 w-4" />
+                    {locale === "en" ? "Download" : "Λήψη"}
+                  </a>
+                  <button
+                    onClick={closeModal}
+                    className="flex h-10 w-10 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Modal Content */}
+              <div className="flex-1 overflow-auto bg-muted/30">
+                {selectedProduct.fileType === "image" ? (
+                  <div className="flex h-full items-center justify-center p-4">
+                    <Image
+                      src={selectedProduct.file}
+                      alt={locale === "en" ? selectedProduct.nameEn : selectedProduct.name}
+                      width={1200}
+                      height={1600}
+                      className="max-h-full w-auto object-contain rounded-lg shadow-lg"
+                    />
+                  </div>
+                ) : (
+                  <iframe
+                    src={selectedProduct.file}
+                    className="h-full w-full"
+                    title={locale === "en" ? selectedProduct.nameEn : selectedProduct.name}
+                  />
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
