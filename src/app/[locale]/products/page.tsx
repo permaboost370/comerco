@@ -3,7 +3,7 @@
 import { Link } from "@/i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
-import { Leaf, FlaskConical, Boxes, Droplets, Sprout, Pipette, TreeDeciduous, ArrowRight } from "lucide-react";
+import { Leaf, FlaskConical, Boxes, Droplets, Sprout, Pipette, TreeDeciduous, ArrowRight, Download, FileText } from "lucide-react";
 import { productCategories } from "@/data/products";
 import { Badge } from "@/components/ui/badge";
 
@@ -55,6 +55,27 @@ export default function ProductsPage() {
             <p className="text-lg text-muted-foreground">
               {t("subtitle")}
             </p>
+
+            {/* Download Catalogue Card */}
+            <div className="mt-8 inline-flex items-center gap-4 rounded-2xl border border-white/40 bg-white/60 backdrop-blur-sm px-6 py-4 shadow-lg shadow-black/5">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <FileText className="h-6 w-6" />
+              </div>
+              <div className="text-left">
+                <p className="font-semibold text-foreground">
+                  {locale === "en" ? "Product Catalogue" : "Κατάλογος Προϊόντων"}
+                </p>
+                <p className="text-sm text-muted-foreground">PDF</p>
+              </div>
+              <a
+                href="/catalogue.pdf"
+                download
+                className="ml-2 flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-md shadow-primary/25 transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 hover:scale-105"
+                title={locale === "en" ? "Download Catalogue" : "Λήψη Καταλόγου"}
+              >
+                <Download className="h-5 w-5" />
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
