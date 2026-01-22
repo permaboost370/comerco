@@ -55,7 +55,7 @@ export default function ProductsPage() {
             priority
           />
           {/* Overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/85 to-white/90 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-white/60 to-white/70" />
         </div>
 
         <div className="container relative mx-auto px-4">
