@@ -5,11 +5,12 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, ChevronDown, Leaf, FlaskConical, Boxes, Droplets, Sprout, Pipette, TreeDeciduous } from "lucide-react";
+import { Menu, ChevronDown, Leaf, FlaskConical, Boxes, Droplets, Sprout, Pipette, TreeDeciduous, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { productCategories } from "@/data/products";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import SearchModal from "@/components/SearchModal";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Leaf,
@@ -24,6 +25,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 export default function Header() {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const t = useTranslations("common");
   const th = useTranslations("header");
   const locale = useLocale();
@@ -134,7 +136,14 @@ export default function Header() {
           </nav>
 
           {/* CTA Button & Language Switcher */}
-          <div className="hidden items-center gap-4 lg:flex">
+          <div className="hidden items-center gap-3 lg:flex">
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="flex h-10 w-10 items-center justify-center rounded-full text-foreground/70 transition-all duration-300 hover:bg-primary/10 hover:text-primary"
+              title={locale === "en" ? "Search products" : "Αναζήτηση προϊόντων"}
+            >
+              <Search className="h-5 w-5" />
+            </button>
             <LanguageSwitcher />
             <Button asChild className="relative overflow-hidden rounded-full border-2 border-primary bg-transparent px-6 text-primary transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/25">
               <Link href="/contact">{t("contact")}</Link>
@@ -142,7 +151,13 @@ export default function Header() {
           </div>
 
           {/* Mobile Menu */}
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-1 lg:hidden">
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="flex h-10 w-10 items-center justify-center rounded-full text-foreground/70 transition-all duration-300 hover:bg-primary/10 hover:text-primary"
+            >
+              <Search className="h-5 w-5" />
+            </button>
             <LanguageSwitcher />
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -202,6 +217,9 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+      {/* Search Modal */}
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </header>
   );
 }
