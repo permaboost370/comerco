@@ -288,9 +288,9 @@ export default function AboutPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {[
               { icon: TrendingUp, value: "12+", label: th("yearsInGreece") },
-              { icon: Users, value: "500+", label: th("partnerFarmers") },
+              { icon: Users, value: "1000+", label: th("partnerFarmers") },
               { icon: Globe, value: "13", label: t("regionsCoverage") },
-              { icon: Microscope, value: "100+", label: t("biotechProducts") },
+              { icon: Microscope, value: "50+", label: t("biotechProducts") },
             ].map((stat, index) => {
               const Icon = stat.icon;
               return (
