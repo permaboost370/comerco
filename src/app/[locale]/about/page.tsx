@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Target, Lightbulb, Heart, Users, Award, Leaf, TrendingUp, Globe, FlaskConical, Microscope } from "lucide-react";
@@ -62,16 +63,29 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/5 via-background to-accent/5 py-12 lg:py-16">
-        <div className="container mx-auto px-4">
+      <section className="relative overflow-hidden py-16 lg:py-24">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/about-hero.jpg"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Dark overlay for white text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/40" />
+        </div>
+
+        <div className="container relative mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <h1 className="mb-4 text-4xl font-bold text-foreground lg:text-5xl">{t("title")}</h1>
-            <p className="text-lg text-muted-foreground">
+            <h1 className="mb-4 text-4xl font-bold text-white lg:text-5xl" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>{t("title")}</h1>
+            <p className="text-lg text-white/90" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
               {t("subtitle")}
             </p>
           </motion.div>
