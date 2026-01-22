@@ -65,23 +65,26 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right Visual - Hero Image */}
+          {/* Right Visual - Hero Image Card */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.95, rotate: -2 }}
+            animate={{ opacity: 1, scale: 1, rotate: 2 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative mx-auto w-full max-w-md lg:max-w-lg"
           >
-            <div className="relative aspect-[3/4] overflow-hidden rounded-3xl border border-white/30 shadow-2xl shadow-black/10 ring-1 ring-black/5">
-              <Image
-                src="/images/hero.png"
-                alt="Comerco Agrotechnology - Λιπάσματα υψηλής ποιότητας"
-                fill
-                className="object-cover"
-                priority
-              />
-              {/* Glass overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-white/10" />
+            {/* Glass Card Container */}
+            <div className="rounded-3xl bg-white/60 backdrop-blur-sm border border-white/40 p-3 shadow-xl shadow-black/10">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
+                <Image
+                  src="/images/hero.png"
+                  alt="Comerco Agrotechnology - Λιπάσματα υψηλής ποιότητας"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                {/* Subtle overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-white/5" />
+              </div>
             </div>
           </motion.div>
         </div>
