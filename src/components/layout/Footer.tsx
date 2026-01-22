@@ -28,7 +28,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block">
               <Image
-                src="/images/logo.svg"
+                src="/images/logo.png"
                 alt="Comerco Agrotechnology"
                 width={200}
                 height={50}

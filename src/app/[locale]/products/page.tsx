@@ -3,16 +3,18 @@
 import { Link } from "@/i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
-import { Leaf, Microscope, Package, Droplets, Sparkles, Settings, ArrowRight } from "lucide-react";
+import { Leaf, FlaskConical, Boxes, Droplets, Sprout, Pipette, TreeDeciduous, ArrowRight } from "lucide-react";
 import { productCategories } from "@/data/products";
+import { Badge } from "@/components/ui/badge";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  Leaf,
-  Microscope,
-  Package,
+  FlaskConical,
+  Boxes,
   Droplets,
-  Sparkles,
-  Settings,
+  Sprout,
+  Pipette,
+  TreeDeciduous,
+  Leaf,
 };
 
 const containerVariants = {
@@ -68,12 +70,20 @@ export default function ProductsPage() {
           >
             {productCategories.map((category) => {
               const Icon = iconMap[category.icon] || Leaf;
+              const productCount = category.products.length;
               return (
                 <motion.div key={category.id} variants={itemVariants}>
                   <Link
                     href={`/products/${category.id}`}
-                    className="group block h-full rounded-2xl border border-white/40 bg-white/60 backdrop-blur-sm p-8 shadow-lg shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10"
+                    className="group relative block h-full rounded-2xl border border-white/40 bg-white/60 backdrop-blur-sm p-8 shadow-lg shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10"
                   >
+                    {/* Product Count Badge */}
+                    {productCount > 0 && (
+                      <Badge className="absolute top-4 right-4 bg-primary/10 text-primary hover:bg-primary/20 text-xs font-semibold">
+                        {productCount} {locale === "en" ? "products" : "προϊόντα"}
+                      </Badge>
+                    )}
+
                     <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 text-primary ring-1 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:from-primary group-hover:to-primary/80 group-hover:text-white group-hover:shadow-lg group-hover:shadow-primary/25">
                       <Icon className="h-8 w-8" />
                     </div>
