@@ -54,8 +54,9 @@ export default function AboutPage() {
     { year: "2012", title: t("founding"), description: t("foundingDesc") },
     { year: "2015", title: t("expansion"), description: t("expansionDesc") },
     { year: "2018", title: t("innovationMilestone"), description: t("innovationMilestoneDesc") },
-    { year: "2020", title: t("growth"), description: t("growthDesc") },
-    { year: "2026", title: t("today"), description: t("todayDesc") },
+    { year: "2019", title: t("growth"), description: t("growthDesc") },
+    { year: "2020", title: t("rebranding"), description: t("rebrandingDesc") },
+    { year: "2025", title: t("today"), description: t("todayDesc") },
   ];
 
   return (
