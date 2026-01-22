@@ -87,7 +87,7 @@ export default function AnimalFeedPage() {
             priority
           />
           {/* Overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/40 to-white/50" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-white/30" />
         </div>
 
         <div className="container relative mx-auto px-4">
