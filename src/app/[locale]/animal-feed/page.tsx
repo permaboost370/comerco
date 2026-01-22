@@ -97,10 +97,10 @@ export default function AnimalFeedPage() {
             transition={{ duration: 0.5 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <h1 className="mb-4 text-4xl font-bold text-foreground lg:text-5xl">
+            <h1 className="mb-4 text-4xl font-bold text-white lg:text-5xl" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
               {t("title")}
             </h1>
-            <p className="text-lg text-foreground/70">
+            <p className="text-lg text-white/90" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
               {t("subtitle")}
             </p>
           </motion.div>
