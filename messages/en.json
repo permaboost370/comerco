@@ -3,7 +3,7 @@
     "home": "Home",
     "products": "Products",
     "about": "About",
-    "distributors": "Distributors",
+    "distributors": "Sales Network",
     "contact": "Contact",
     "privacyPolicy": "Privacy Policy",
     "viewAll": "View All",
@@ -144,7 +144,7 @@
     "products": "Products",
     "company": "Company",
     "aboutUs": "About Us",
-    "partners": "Partners",
+    "partners": "Sales Network",
     "followUs": "Follow Us"
   },
   "stats": {
