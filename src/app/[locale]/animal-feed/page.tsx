@@ -65,8 +65,21 @@ export default function AnimalFeedPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/5 via-background to-accent/5 py-16 lg:py-24">
-        <div className="container mx-auto px-4">
+      <section className="relative overflow-hidden py-16 lg:py-24">
+        {/* Background Image - positioned at top for 16:9 images */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/animal-feed-hero.jpg"
+            alt=""
+            fill
+            className="object-cover object-top"
+            priority
+          />
+          {/* Gradient overlay - fades from transparent at top to white at bottom */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-white/60 to-white/90" />
+        </div>
+
+        <div className="container relative mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
