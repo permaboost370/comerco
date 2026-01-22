@@ -8,6 +8,7 @@ import { Menu, ChevronDown, Leaf, FlaskConical, Boxes, Droplets, Sprout, Pipette
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { productCategories } from "@/data/products";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Leaf,
@@ -133,21 +134,24 @@ export default function Header() {
             )}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
+          {/* CTA Button & Language Switcher */}
+          <div className="hidden items-center gap-3 lg:flex">
+            <LanguageSwitcher />
             <Button asChild>
               <Link href="/contact">Επικοινωνία</Link>
             </Button>
           </div>
 
           {/* Mobile Menu */}
-          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-            <SheetTrigger asChild className="lg:hidden">
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle menu</span>
-              </Button>
-            </SheetTrigger>
+          <div className="flex items-center gap-2 lg:hidden">
+            <LanguageSwitcher />
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle menu</span>
+                </Button>
+              </SheetTrigger>
             <SheetContent side="right" className="w-full max-w-sm">
               <div className="flex flex-col gap-6 pt-6">
                 <Link href="/" className="flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
@@ -195,7 +199,8 @@ export default function Header() {
                 </Button>
               </div>
             </SheetContent>
-          </Sheet>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>

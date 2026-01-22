@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import CookieConsent from "@/components/CookieConsent";
-import ScrollToTop from "@/components/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,20 +14,24 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Comerco Agrotechnology | Wholesale Fertilizers in Greece",
+    default: "Comerco Agrotechnology | Λιπάσματα Χονδρικής στην Ελλάδα",
     template: "%s | Comerco Agrotechnology",
   },
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   description:
-    "Leading wholesale supplier of premium fertilizers in Greece. Quality nitrogen, phosphate, potassium, and organic fertilizers for farmers and agricultural shops.",
+    "Κορυφαίος προμηθευτής χονδρικής πώλησης premium λιπασμάτων στην Ελλάδα. Ποιοτικά λιπάσματα αζώτου, φωσφόρου, καλίου και οργανικά λιπάσματα για αγρότες.",
   keywords: [
-    "fertilizers",
-    "wholesale fertilizers",
-    "agricultural products",
-    "Greece",
-    "farming",
-    "nitrogen fertilizer",
-    "phosphate fertilizer",
-    "organic fertilizer",
+    "λιπάσματα",
+    "χονδρική λιπασμάτων",
+    "γεωργικά προϊόντα",
+    "Ελλάδα",
+    "γεωργία",
+    "βιολογικά λιπάσματα",
+    "οργανικά λιπάσματα",
   ],
   authors: [{ name: "Comerco Agrotechnology" }],
   openGraph: {
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
     locale: "el_GR",
     url: "https://comerco.gr",
     siteName: "Comerco Agrotechnology",
-    title: "Comerco Agrotechnology | Wholesale Fertilizers in Greece",
+    title: "Comerco Agrotechnology | Λιπάσματα Χονδρικής στην Ελλάδα",
     description:
-      "Leading wholesale supplier of premium fertilizers in Greece. Quality products for farmers and agricultural shops.",
+      "Κορυφαίος προμηθευτής χονδρικής πώλησης premium λιπασμάτων στην Ελλάδα. Ποιοτικά προϊόντα για αγρότες και γεωργικά καταστήματα.",
   },
 };
 
@@ -51,15 +51,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="el">
+    <html suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div className="flex min-h-screen flex-col">
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <CookieConsent />
-          <ScrollToTop />
-        </div>
+        {children}
       </body>
     </html>
   );

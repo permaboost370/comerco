@@ -13,7 +13,11 @@
       "Bash(taskkill:*)",
       "Bash(echo:*)",
       "Bash(dir \"C:\\\\Users\\\\mixal\\\\comerco\\\\public\\\\images\")",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git branch:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)"
     ]
   }
 }

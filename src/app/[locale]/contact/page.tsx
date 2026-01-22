@@ -82,6 +82,22 @@ export default function ContactPage() {
               const Icon = info.icon;
               const isClickable = info.action !== null;
 
+              const cardContent = (
+                <div className="flex h-full flex-col items-center text-center p-8">
+                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg">
+                    <Icon className="h-8 w-8" />
+                  </div>
+                  <h3 className="mb-3 text-lg font-bold text-foreground">{info.title}</h3>
+                  <div className="space-y-1">
+                    {info.details.map((detail, i) => (
+                      <p key={i} className="text-muted-foreground leading-relaxed">
+                        {detail}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              );
+
               return (
                 <motion.div
                   key={info.title}
@@ -91,33 +107,13 @@ export default function ContactPage() {
                 >
                   {isClickable ? (
                     <a href={info.action!} target={info.action?.startsWith("https") ? "_blank" : undefined} rel="noopener noreferrer">
-                      <Card className="h-full cursor-pointer transition-all hover:border-primary/50 hover:shadow-lg">
-                        <CardContent className="p-6">
-                          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                            <Icon className="h-6 w-6" />
-                          </div>
-                          <h3 className="mb-2 text-lg font-semibold text-foreground">{info.title}</h3>
-                          {info.details.map((detail, i) => (
-                            <p key={i} className="text-muted-foreground">
-                              {detail}
-                            </p>
-                          ))}
-                        </CardContent>
+                      <Card className="group h-full cursor-pointer border-2 border-transparent bg-card transition-all hover:border-primary hover:shadow-xl">
+                        {cardContent}
                       </Card>
                     </a>
                   ) : (
-                    <Card className="h-full">
-                      <CardContent className="p-6">
-                        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                          <Icon className="h-6 w-6" />
-                        </div>
-                        <h3 className="mb-2 text-lg font-semibold text-foreground">{info.title}</h3>
-                        {info.details.map((detail, i) => (
-                          <p key={i} className="text-muted-foreground">
-                            {detail}
-                          </p>
-                        ))}
-                      </CardContent>
+                    <Card className="h-full border-2 border-transparent bg-card">
+                      {cardContent}
                     </Card>
                   )}
                 </motion.div>
