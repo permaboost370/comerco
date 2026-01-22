@@ -51,7 +51,7 @@ export default function Hero() {
             {/* Trust Indicators */}
             <div className="mt-12 grid grid-cols-3 gap-4">
               <div className="rounded-2xl bg-white/60 backdrop-blur-sm border border-white/40 p-4 text-center shadow-lg shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:shadow-xl">
-                <div className="text-3xl font-bold text-primary lg:text-4xl">12+</div>
+                <div className="text-3xl font-bold text-primary lg:text-4xl">14+</div>
                 <div className="text-xs text-muted-foreground sm:text-sm">{t("yearsInGreece")}</div>
               </div>
               <div className="rounded-2xl bg-white/60 backdrop-blur-sm border border-white/40 p-4 text-center shadow-lg shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:shadow-xl">

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Calendar, Users, MapPin, Package } from "lucide-react";
 
 const stats = [
-  { key: "years", icon: Calendar, value: "12+" },
+  { key: "years", icon: Calendar, value: "14+" },
   { key: "farmers", icon: Users, value: "1000+" },
   { key: "regions", icon: MapPin, value: "13" },
   { key: "products", icon: Package, value: "50+" },
