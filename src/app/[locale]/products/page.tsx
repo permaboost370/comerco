@@ -55,7 +55,7 @@ export default function ProductsPage() {
             priority
           />
           {/* Overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-white/60 to-white/70" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-white/30" />
         </div>
 
         <div className="container relative mx-auto px-4">
@@ -65,8 +65,8 @@ export default function ProductsPage() {
             transition={{ duration: 0.5 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <h1 className="mb-4 text-4xl font-bold text-foreground lg:text-5xl">{t("title")}</h1>
-            <p className="text-lg text-foreground/70">
+            <h1 className="mb-4 text-4xl font-bold text-white lg:text-5xl" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>{t("title")}</h1>
+            <p className="text-lg text-white/90" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
               {t("subtitle")}
             </p>
 
