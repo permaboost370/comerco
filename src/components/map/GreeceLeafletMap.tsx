@@ -51,6 +51,7 @@ export default function GreeceLeafletMap({
       zoom={defaultZoom}
       className="h-[500px] w-full rounded-xl"
       scrollWheelZoom={true}
+      attributionControl={false}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
