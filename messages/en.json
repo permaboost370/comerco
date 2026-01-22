@@ -4,6 +4,7 @@
     "products": "Products",
     "about": "About",
     "distributors": "Sales Network",
+    "animalFeed": "Animal Feed",
     "contact": "Contact",
     "privacyPolicy": "Privacy Policy",
     "viewAll": "View All",
@@ -162,6 +163,12 @@
     "showcase2": "Healthy crops",
     "showcase3": "Sustainable agriculture",
     "showcase4": "Innovative products"
+  },
+  "animalFeed": {
+    "title": "Animal Feed",
+    "subtitle": "High quality animal nutrition products. Milk powders and nutritional supplements for healthy growth.",
+    "downloadCatalogue": "Download Catalogue",
+    "ourProducts": "Our Products"
   },
   "cookies": {
     "title": "We Use Cookies",

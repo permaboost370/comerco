@@ -32,8 +32,8 @@ export default function Header() {
     { name: t("home"), href: "/" },
     { name: t("products"), href: "/products", hasMegaMenu: true },
     { name: t("about"), href: "/about" },
+    { name: t("animalFeed"), href: "/animal-feed" },
     { name: t("distributors"), href: "/distributors" },
-    { name: t("contact"), href: "/contact" },
   ];
 
   return (
