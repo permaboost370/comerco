@@ -76,7 +76,7 @@ export default function AnimalFeedPage() {
             priority
           />
           {/* Overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-white/60 to-white/70" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/40 to-white/50" />
         </div>
 
         <div className="container relative mx-auto px-4">
@@ -89,7 +89,7 @@ export default function AnimalFeedPage() {
             <h1 className="mb-4 text-4xl font-bold text-foreground lg:text-5xl">
               {t("title")}
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-foreground/70">
               {t("subtitle")}
             </p>
           </motion.div>
