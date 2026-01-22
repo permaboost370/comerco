@@ -139,7 +139,7 @@ export default function Header() {
           <div className="hidden items-center gap-3 lg:flex">
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-foreground/70 transition-all duration-300 hover:bg-primary/10 hover:text-primary"
+              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-foreground/70 transition-all duration-300 hover:bg-primary/10 hover:text-primary"
               title={locale === "en" ? "Search products" : "Αναζήτηση προϊόντων"}
             >
               <Search className="h-5 w-5" />
@@ -154,7 +154,7 @@ export default function Header() {
           <div className="flex items-center gap-1 lg:hidden">
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-foreground/70 transition-all duration-300 hover:bg-primary/10 hover:text-primary"
+              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-foreground/70 transition-all duration-300 hover:bg-primary/10 hover:text-primary"
             >
               <Search className="h-5 w-5" />
             </button>
