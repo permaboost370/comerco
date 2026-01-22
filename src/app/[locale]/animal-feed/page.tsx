@@ -66,17 +66,17 @@ export default function AnimalFeedPage() {
     <>
       {/* Hero Section */}
       <section className="relative overflow-hidden py-16 lg:py-24">
-        {/* Background Image */}
+        {/* Background Image - positioned at top for 16:9 images */}
         <div className="absolute inset-0">
           <Image
             src="/images/animal-feed-hero.jpg"
             alt=""
             fill
-            className="object-cover"
+            className="object-cover object-top"
             priority
           />
-          {/* Overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-white/60 to-white/70" />
+          {/* Gradient overlay - fades from transparent at top to white at bottom */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-white/60 to-white/90" />
         </div>
 
         <div className="container relative mx-auto px-4">
