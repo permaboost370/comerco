@@ -5,7 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowLeft, Leaf, FlaskConical, Boxes, Droplets, Sprout, Pipette, TreeDeciduous } from "lucide-react";
+import { ArrowLeft, Leaf, FlaskConical, Boxes, Droplets, Sprout, Pipette, TreeDeciduous, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { productCategories, getCategoryById } from "@/data/products";
@@ -84,31 +84,47 @@ export default function CategoryPage({
       {hasProducts ? (
         <section className="py-12 lg:py-16">
           <div className="container mx-auto px-4">
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {category.products.map((product, index) => (
                 <motion.div
                   key={product.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="group relative rounded-xl border border-white/40 bg-white/60 backdrop-blur-sm p-5 shadow-md shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1"
+                  transition={{ duration: 0.4, delay: index * 0.03 }}
                 >
-                  {/* BIO Badge */}
-                  {product.isBio && (
-                    <Badge className="absolute top-3 right-3 bg-green-600 hover:bg-green-700 text-white text-xs font-bold px-2 py-0.5">
-                      BIO
-                    </Badge>
-                  )}
+                  <Link
+                    href={`/products/${category.id}/${product.id}`}
+                    className="group relative flex flex-col rounded-xl border border-white/40 bg-white/60 backdrop-blur-sm shadow-md shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 overflow-hidden"
+                  >
+                    {/* Product Image Placeholder */}
+                    <div className="relative aspect-square bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center">
+                      <Package className="h-16 w-16 text-primary/30" />
+                      {/* BIO Badge */}
+                      {product.isBio && (
+                        <Badge className="absolute top-3 right-3 bg-green-600 hover:bg-green-700 text-white text-xs font-bold px-2 py-0.5">
+                          BIO
+                        </Badge>
+                      )}
+                    </div>
 
-                  {/* Product Name */}
-                  <h3 className="font-bold text-foreground text-lg mb-2 pr-12 group-hover:text-primary transition-colors">
-                    {locale === "en" ? product.nameEn : product.name}
-                  </h3>
+                    {/* Product Info */}
+                    <div className="p-4">
+                      {/* Product Name */}
+                      <h3 className="font-bold text-foreground text-base mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                        {locale === "en" ? product.nameEn : product.name}
+                      </h3>
 
-                  {/* Product Description */}
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {locale === "en" ? product.descriptionEn : product.description}
-                  </p>
+                      {/* Product Description */}
+                      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                        {locale === "en" ? product.descriptionEn : product.description}
+                      </p>
+
+                      {/* View Product Link */}
+                      <p className="mt-3 text-sm font-medium text-primary group-hover:underline">
+                        {locale === "en" ? "View Product" : "Δείτε το Προϊόν"} →
+                      </p>
+                    </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>
