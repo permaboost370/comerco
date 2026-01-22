@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
-import { Download, FileText, Eye, X, ImageIcon } from "lucide-react";
+import { Download, FileText, Eye, X, ImageIcon, Play } from "lucide-react";
 
 type FileType = "pdf" | "image";
 
@@ -51,6 +51,18 @@ export default function AnimalFeedPage() {
   const t = useTranslations("animalFeed");
   const locale = useLocale();
   const [selectedProduct, setSelectedProduct] = useState<AnimalFeedProduct | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handlePlayVideo = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
+  const handleVideoPlay = () => setIsPlaying(true);
+  const handleVideoPause = () => setIsPlaying(false);
 
   const openModal = (product: AnimalFeedProduct) => {
     setSelectedProduct(product);
@@ -92,6 +104,49 @@ export default function AnimalFeedPage() {
             <p className="text-lg text-foreground/70">
               {t("subtitle")}
             </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Video Section */}
+      <section className="py-16 lg:py-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mx-auto max-w-4xl"
+          >
+            <div className="rounded-3xl border border-white/40 bg-white/60 backdrop-blur-sm p-3 shadow-xl shadow-black/10 overflow-hidden">
+              <div className="relative rounded-2xl overflow-hidden bg-black">
+                <video
+                  ref={videoRef}
+                  className="w-full aspect-video"
+                  controls={isPlaying}
+                  onPlay={handleVideoPlay}
+                  onPause={handleVideoPause}
+                  onEnded={handleVideoPause}
+                  playsInline
+                >
+                  <source src="/videos/animal-feed-video.mp4" type="video/mp4" />
+                  {locale === "en"
+                    ? "Your browser does not support the video tag."
+                    : "Ο browser σας δεν υποστηρίζει το video tag."}
+                </video>
+
+                {/* Custom Play Button Overlay */}
+                {!isPlaying && (
+                  <button
+                    onClick={handlePlayVideo}
+                    className="absolute inset-0 flex items-center justify-center bg-black/30 transition-all duration-300 hover:bg-black/40 cursor-pointer group"
+                  >
+                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/90 shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:bg-white">
+                      <Play className="h-8 w-8 text-primary ml-1" fill="currentColor" />
+                    </div>
+                  </button>
+                )}
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
