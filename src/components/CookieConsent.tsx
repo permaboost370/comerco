@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cookie, X, Settings, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,8 @@ export default function CookieConsent() {
     analytics: false,
     marketing: false,
   });
+  const t = useTranslations("cookies");
+  const tc = useTranslations("common");
 
   useEffect(() => {
     const consent = localStorage.getItem("cookie-consent");
@@ -65,7 +68,7 @@ export default function CookieConsent() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={openSettings}
-            className="fixed bottom-4 right-4 z-50 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-primary text-primary-foreground shadow-xl ring-4 ring-primary/20 transition-all hover:scale-110 hover:shadow-2xl hover:ring-primary/40"
+            className="fixed bottom-4 right-4 z-50 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-xl shadow-primary/25 ring-4 ring-primary/20 transition-all hover:scale-110 hover:shadow-2xl hover:ring-primary/40"
             aria-label="Ρυθμίσεις Cookies"
           >
             <Cookie className="h-6 w-6" />
@@ -83,39 +86,39 @@ export default function CookieConsent() {
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
             className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
           >
-            <div className="mx-auto max-w-4xl rounded-2xl border border-border bg-card p-6 shadow-2xl">
+            <div className="mx-auto max-w-4xl rounded-2xl border border-white/30 bg-white/90 backdrop-blur-xl p-6 shadow-2xl shadow-black/10">
               {!showSettings ? (
                 /* Main Banner */
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 ring-1 ring-primary/20">
                       <Cookie className="h-6 w-6 text-primary" />
                     </div>
                     <div>
                       <h3 className="mb-1 text-lg font-semibold text-foreground">
-                        Χρησιμοποιούμε Cookies
+                        {t("title")}
                       </h3>
                       <p className="text-sm text-muted-foreground">
-                        Χρησιμοποιούμε cookies για να βελτιώσουμε την εμπειρία σας στον ιστότοπό μας.
-                        Διαβάστε την{" "}
+                        {t("description")}{" "}
+                        {t("readPrivacy")}{" "}
                         <Link href="/privacy-policy" className="cursor-pointer text-primary hover:underline">
-                          Πολιτική Απορρήτου
+                          {tc("privacyPolicy")}
                         </Link>{" "}
-                        μας για περισσότερες πληροφορίες.
+                        {t("forMoreInfo")}
                       </p>
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-2 lg:shrink-0">
                     <Button variant="outline" size="sm" onClick={() => setShowSettings(true)} className="cursor-pointer">
                       <Settings className="mr-2 h-4 w-4" />
-                      Ρυθμίσεις
+                      {t("settings")}
                     </Button>
                     <Button variant="outline" size="sm" onClick={acceptNecessary} className="cursor-pointer">
-                      Μόνο Απαραίτητα
+                      {t("acceptNecessary")}
                     </Button>
                     <Button size="sm" onClick={acceptAll} className="cursor-pointer">
                       <Check className="mr-2 h-4 w-4" />
-                      Αποδοχή Όλων
+                      {t("acceptAll")}
                     </Button>
                   </div>
                 </div>
@@ -123,7 +126,7 @@ export default function CookieConsent() {
                 /* Settings Panel */
                 <div>
                   <div className="mb-4 flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-foreground">Ρυθμίσεις Cookies</h3>
+                    <h3 className="text-lg font-semibold text-foreground">{t("cookieSettings")}</h3>
                     <Button variant="ghost" size="icon" onClick={() => setShowSettings(false)} className="cursor-pointer">
                       <X className="h-4 w-4" />
                     </Button>
@@ -131,12 +134,11 @@ export default function CookieConsent() {
 
                   <div className="mb-6 space-y-4">
                     {/* Necessary Cookies */}
-                    <div className="flex items-start justify-between gap-4 rounded-lg border border-border p-4">
+                    <div className="flex items-start justify-between gap-4 rounded-lg border border-white/40 bg-white/50 p-4">
                       <div>
-                        <h4 className="font-medium text-foreground">Απαραίτητα Cookies</h4>
+                        <h4 className="font-medium text-foreground">{t("necessaryCookies")}</h4>
                         <p className="text-sm text-muted-foreground">
-                          Είναι απαραίτητα για τη λειτουργία του ιστότοπου και δεν μπορούν να
-                          απενεργοποιηθούν.
+                          {t("necessaryDesc")}
                         </p>
                       </div>
                       <div className="flex h-6 w-10 items-center justify-end rounded-full bg-primary px-1">
@@ -145,11 +147,11 @@ export default function CookieConsent() {
                     </div>
 
                     {/* Analytics Cookies */}
-                    <div className="flex items-start justify-between gap-4 rounded-lg border border-border p-4">
+                    <div className="flex items-start justify-between gap-4 rounded-lg border border-white/40 bg-white/50 p-4">
                       <div>
-                        <h4 className="font-medium text-foreground">Cookies Ανάλυσης</h4>
+                        <h4 className="font-medium text-foreground">{t("analyticsCookies")}</h4>
                         <p className="text-sm text-muted-foreground">
-                          Μας βοηθούν να κατανοήσουμε πώς χρησιμοποιείτε τον ιστότοπο.
+                          {t("analyticsDesc")}
                         </p>
                       </div>
                       <button
@@ -165,11 +167,11 @@ export default function CookieConsent() {
                     </div>
 
                     {/* Marketing Cookies */}
-                    <div className="flex items-start justify-between gap-4 rounded-lg border border-border p-4">
+                    <div className="flex items-start justify-between gap-4 rounded-lg border border-white/40 bg-white/50 p-4">
                       <div>
-                        <h4 className="font-medium text-foreground">Cookies Μάρκετινγκ</h4>
+                        <h4 className="font-medium text-foreground">{t("marketingCookies")}</h4>
                         <p className="text-sm text-muted-foreground">
-                          Χρησιμοποιούνται για να σας εμφανίζουμε σχετικές διαφημίσεις.
+                          {t("marketingDesc")}
                         </p>
                       </div>
                       <button
@@ -187,9 +189,9 @@ export default function CookieConsent() {
 
                   <div className="flex justify-end gap-2">
                     <Button variant="outline" onClick={acceptNecessary} className="cursor-pointer">
-                      Μόνο Απαραίτητα
+                      {t("acceptNecessary")}
                     </Button>
-                    <Button onClick={savePreferences} className="cursor-pointer">Αποθήκευση Επιλογών</Button>
+                    <Button onClick={savePreferences} className="cursor-pointer">{t("savePreferences")}</Button>
                   </div>
                 </div>
               )}

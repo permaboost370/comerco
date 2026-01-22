@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
+import { useTranslations, useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, ChevronDown, Leaf, FlaskConical, Boxes, Droplets, Sprout, Pipette, TreeDeciduous } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,20 +21,23 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   TreeDeciduous,
 };
 
-const navLinks = [
-  { name: "Αρχική", nameEn: "Home", href: "/" },
-  { name: "Προϊόντα", nameEn: "Products", href: "/products", hasMegaMenu: true },
-  { name: "Σχετικά", nameEn: "About", href: "/about" },
-  { name: "Συνεργάτες", nameEn: "Distributors", href: "/distributors" },
-  { name: "Επικοινωνία", nameEn: "Contact", href: "/contact" },
-];
-
 export default function Header() {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const t = useTranslations("common");
+  const th = useTranslations("header");
+  const locale = useLocale();
+
+  const navLinks = [
+    { name: t("home"), href: "/" },
+    { name: t("products"), href: "/products", hasMegaMenu: true },
+    { name: t("about"), href: "/about" },
+    { name: t("distributors"), href: "/distributors" },
+    { name: t("contact"), href: "/contact" },
+  ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/80 backdrop-blur-xl shadow-[0_2px_20px_-2px_rgba(0,0,0,0.1)] supports-[backdrop-filter]:bg-background/70">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between lg:h-20">
           {/* Logo */}
@@ -49,7 +53,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex lg:items-center lg:gap-1">
+          <nav className="hidden lg:flex lg:items-center lg:gap-1 font-[family-name:var(--font-inter)]">
             {navLinks.map((link) =>
               link.hasMegaMenu ? (
                 <div
@@ -60,14 +64,11 @@ export default function Header() {
                 >
                   <Link
                     href={link.href}
-                    className="group relative flex items-center gap-1.5 px-4 py-2 text-[15px] font-semibold tracking-wide text-foreground/80 transition-all hover:text-primary"
+                    className="group relative flex items-center gap-1.5 rounded-full px-5 py-2.5 text-[14px] font-semibold tracking-wide text-foreground/80 transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/25"
                   >
-                    <span className="relative">
-                      {link.name}
-                      <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
-                    </span>
+                    {link.name}
                     <ChevronDown
-                      className={`h-4 w-4 transition-transform duration-300 ${
+                      className={`h-3.5 w-3.5 text-foreground/50 transition-all duration-300 group-hover:text-white ${
                         isMegaMenuOpen ? "rotate-180" : ""
                       }`}
                     />
@@ -83,14 +84,15 @@ export default function Header() {
                         transition={{ duration: 0.2 }}
                         className="absolute left-1/2 top-full z-50 w-[900px] -translate-x-1/2 pt-2"
                       >
-                        <div className="rounded-xl border border-border bg-card p-6 shadow-xl">
-                          <div className="mb-4 flex items-center justify-between">
-                            <h3 className="text-lg font-semibold text-foreground">Τα Προϊόντα μας</h3>
+                        <div className="rounded-2xl border border-border/50 bg-background p-6 shadow-2xl shadow-black/15 backdrop-blur-xl">
+                          <div className="mb-5 flex items-center justify-between border-b border-border/50 pb-4">
+                            <h3 className="text-base font-semibold tracking-tight text-foreground">{th("ourProducts")}</h3>
                             <Link
                               href="/products"
-                              className="text-sm font-medium text-primary hover:underline"
+                              className="group flex items-center gap-1.5 text-sm font-medium text-primary transition-all hover:gap-2.5"
                             >
-                              Δείτε Όλα τα Προϊόντα →
+                              {th("viewAllProducts")}
+                              <span className="transition-transform group-hover:translate-x-0.5">→</span>
                             </Link>
                           </div>
                           <div className="grid grid-cols-2 gap-4">
@@ -100,14 +102,14 @@ export default function Header() {
                                 <Link
                                   key={category.id}
                                   href={`/products/${category.id}`}
-                                  className="group rounded-lg border border-transparent p-4 transition-all hover:border-border hover:bg-muted"
+                                  className="group rounded-xl border border-transparent p-4 transition-all duration-300 hover:border-primary/20 hover:bg-gradient-to-br hover:from-primary/5 hover:to-transparent hover:shadow-lg hover:shadow-primary/5"
                                 >
-                                  <div className="mb-2 flex items-center gap-3">
-                                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                                  <div className="flex items-center gap-3">
+                                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 text-primary ring-1 ring-primary/10 transition-all duration-300 group-hover:scale-110 group-hover:from-primary group-hover:to-primary/80 group-hover:text-white group-hover:shadow-lg group-hover:shadow-primary/25">
                                       <Icon className="h-5 w-5" />
                                     </div>
-                                    <h4 className="text-sm font-semibold leading-tight text-foreground">
-                                      {category.name}
+                                    <h4 className="text-sm font-medium leading-tight text-foreground/80 transition-colors group-hover:text-foreground">
+                                      {locale === "en" ? category.nameEn : category.name}
                                     </h4>
                                   </div>
                                 </Link>
@@ -123,22 +125,19 @@ export default function Header() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="group relative px-4 py-2 text-[15px] font-semibold tracking-wide text-foreground/80 transition-all hover:text-primary"
+                  className="rounded-full px-5 py-2.5 text-[14px] font-semibold tracking-wide text-foreground/80 transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/25"
                 >
-                  <span className="relative">
-                    {link.name}
-                    <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
-                  </span>
+                  {link.name}
                 </Link>
               )
             )}
           </nav>
 
           {/* CTA Button & Language Switcher */}
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-4 lg:flex">
             <LanguageSwitcher />
-            <Button asChild>
-              <Link href="/contact">Επικοινωνία</Link>
+            <Button asChild className="relative overflow-hidden rounded-full border-2 border-primary bg-transparent px-6 text-primary transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/25">
+              <Link href="/contact">{t("contact")}</Link>
             </Button>
           </div>
 
@@ -152,7 +151,7 @@ export default function Header() {
                   <span className="sr-only">Toggle menu</span>
                 </Button>
               </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-sm">
+            <SheetContent side="right" className="w-full max-w-sm border-l-white/10 bg-background/95 backdrop-blur-xl">
               <div className="flex flex-col gap-6 pt-6">
                 <Link href="/" className="flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
                   <Image
@@ -164,26 +163,26 @@ export default function Header() {
                   />
                 </Link>
 
-                <nav className="flex flex-col gap-2">
+                <nav className="flex flex-col gap-2 font-[family-name:var(--font-inter)]">
                   {navLinks.map((link) => (
                     <div key={link.name}>
                       <Link
                         href={link.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="block rounded-md px-4 py-3 text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
+                        className="block rounded-xl px-4 py-3.5 text-base font-medium text-foreground/80 transition-all duration-200 hover:bg-primary/5 hover:text-foreground hover:pl-5"
                       >
                         {link.name}
                       </Link>
                       {link.hasMegaMenu && (
-                        <div className="ml-4 mt-2 space-y-1 border-l border-border pl-4">
+                        <div className="ml-4 mt-1 space-y-0.5 border-l-2 border-primary/20 pl-4">
                           {productCategories.map((category) => (
                             <Link
                               key={category.id}
                               href={`/products/${category.id}`}
                               onClick={() => setIsMobileMenuOpen(false)}
-                              className="block py-2 text-sm text-muted-foreground hover:text-primary"
+                              className="block rounded-lg py-2.5 pl-2 text-sm text-muted-foreground transition-all duration-200 hover:bg-primary/5 hover:text-primary hover:pl-3"
                             >
-                              {category.name}
+                              {locale === "en" ? category.nameEn : category.name}
                             </Link>
                           ))}
                         </div>
@@ -192,9 +191,9 @@ export default function Header() {
                   ))}
                 </nav>
 
-                <Button asChild className="mt-4">
+                <Button asChild className="mt-6 rounded-full border-2 border-primary bg-transparent text-primary transition-all duration-300 hover:bg-primary hover:text-white">
                   <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                    Επικοινωνία
+                    {t("contact")}
                   </Link>
                 </Button>
               </div>

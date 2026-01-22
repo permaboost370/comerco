@@ -1,42 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Target, Lightbulb, Heart, Users, Award, Leaf, TrendingUp, Globe, FlaskConical, Microscope } from "lucide-react";
-
-const values = [
-  {
-    icon: Award,
-    title: "Υπευθυνότητα",
-    description:
-      "Δεσμευόμαστε για άριστη ποιότητα σε κάθε προϊόν και υπηρεσία που προσφέρουμε.",
-  },
-  {
-    icon: Heart,
-    title: "Ακεραιότητα",
-    description:
-      "Ειλικρινείς συμβουλές, διαφανείς τιμές και αξιόπιστη εξυπηρέτηση. Χτίζουμε σχέσεις βασισμένες στην εμπιστοσύνη.",
-  },
-  {
-    icon: Leaf,
-    title: "Βιωσιμότητα",
-    description:
-      "Πιστεύουμε στην υπεύθυνη γεωργία. Τα προϊόντα μας υποστηρίζουν βιώσιμες καλλιεργητικές πρακτικές.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Εφευρετικότητα",
-    description:
-      "Συνεχής καινοτομία και ανάπτυξη νέων λύσεων για τις ανάγκες της σύγχρονης γεωργίας.",
-  },
-];
-
-const milestones = [
-  { year: "2012", title: "Ίδρυση", description: "Ιδρύθηκε το τμήμα διεθνούς marketing και εξαγωγών SacomHellas - microsporeHellas" },
-  { year: "2015", title: "Επέκταση", description: "Επέκταση του δικτύου διανομής σε όλη την Ελλάδα" },
-  { year: "2018", title: "Καινοτομία", description: "Εισαγωγή νέας σειράς βιολογικών λιπασμάτων με μικροοργανισμούς" },
-  { year: "2020", title: "Ανάπτυξη", description: "Διεύρυνση γκάμας βιοδιεγερτών και οργανικών λιπασμάτων" },
-  { year: "2024", title: "Σήμερα", description: "Ένας από τους μεγαλύτερους παραγωγούς φυσικών και βιολογικών λιπασμάτων στην Ευρώπη" },
-];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -58,6 +24,40 @@ const itemVariants = {
 };
 
 export default function AboutPage() {
+  const t = useTranslations("about");
+  const th = useTranslations("hero");
+
+  const values = [
+    {
+      icon: Award,
+      title: t("responsibility"),
+      description: t("responsibilityDesc"),
+    },
+    {
+      icon: Heart,
+      title: t("integrity"),
+      description: t("integrityDesc"),
+    },
+    {
+      icon: Leaf,
+      title: t("sustainability"),
+      description: t("sustainabilityDesc"),
+    },
+    {
+      icon: Lightbulb,
+      title: t("innovation"),
+      description: t("innovationDesc"),
+    },
+  ];
+
+  const milestones = [
+    { year: "2012", title: t("founding"), description: t("foundingDesc") },
+    { year: "2015", title: t("expansion"), description: t("expansionDesc") },
+    { year: "2018", title: t("innovationMilestone"), description: t("innovationMilestoneDesc") },
+    { year: "2020", title: t("growth"), description: t("growthDesc") },
+    { year: "2026", title: t("today"), description: t("todayDesc") },
+  ];
+
   return (
     <>
       {/* Hero Section */}
@@ -69,10 +69,9 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <h1 className="mb-4 text-4xl font-bold text-foreground lg:text-5xl">Σχετικά με την Comerco</h1>
+            <h1 className="mb-4 text-4xl font-bold text-foreground lg:text-5xl">{t("title")}</h1>
             <p className="text-lg text-muted-foreground">
-              Η Comerco Agrotechnology είναι ένας από τους μεγαλύτερους παραγωγούς φυσικών και βιολογικών
-              λιπασμάτων στην Ευρώπη με προϊόντα που είναι διαθέσιμα σε όλο τον κόσμο.
+              {t("subtitle")}
             </p>
           </motion.div>
         </div>
@@ -88,22 +87,11 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="mb-6 text-3xl font-bold text-foreground lg:text-4xl">Η Ιστορία μας</h2>
+              <h2 className="mb-6 text-3xl font-bold text-foreground lg:text-4xl">{t("ourStory")}</h2>
               <div className="space-y-4 text-muted-foreground">
-                <p>
-                  Η ερημοποίηση και η διάβρωση του εδάφους που δημιουργούνται από χημικά φαινόμενα,
-                  έχουν καταστροφικά αποτελέσματα στην γεωργία. Χάρη στις έρευνές μας, δημιουργήσαμε
-                  και διαλέξαμε «έξυπνα μικρόβια», που βρίσκονται στην βάση των διαλυμάτων biotech.
-                </p>
-                <p>
-                  Η Comerco Agrotechnology παράγει και διανέμει διάφορες σειρές βιολογικών και φυσικών
-                  λιπασμάτων, λιπάσματα οργανικής βάσης, υδρολυόμενα λιπάσματα και αργής αποδέσμευσης.
-                </p>
-                <p>
-                  Η εταιρία μας παράγει και διανέμει μια μεγάλη ποικιλία οργανικών λιπασμάτων σε υγρή
-                  και κοκκώδη μορφή. Η ομάδα μας, ανάπτυξης και έρευνας, δημιουργεί καινούργια μίγματα
-                  λιπασμάτων για τις πολλαπλές ανάγκες των πελατών μας.
-                </p>
+                <p>{t("storyP1")}</p>
+                <p>{t("storyP2")}</p>
+                <p>{t("storyP3")}</p>
               </div>
             </motion.div>
 
@@ -113,19 +101,13 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <div className="rounded-2xl border border-border bg-primary/5 p-8">
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+              <div className="rounded-2xl border border-white/40 bg-white/60 backdrop-blur-sm p-8 shadow-lg shadow-black/5">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-lg shadow-primary/25 ring-1 ring-white/20">
                   <Globe className="h-7 w-7" />
                 </div>
-                <h3 className="mb-4 text-xl font-bold text-foreground">Microspore στην Ελλάδα</h3>
-                <p className="text-muted-foreground">
-                  Από το 2012 ιδρύθηκε το τμήμα διεθνούς marketing και εξαγωγών SacomHellas - microsporeHellas
-                  με σκοπό να φέρει σε άμεση επαφή την τεχνολογία και τα προϊόντα μας με τον αγροτικό κόσμο της χώρας.
-                </p>
-                <p className="mt-4 text-muted-foreground">
-                  Η έδρα της Microspore βρίσκεται στην Αθήνα και έχει διεθνή παρουσία μέσω των διανομέων
-                  και των πελατών της.
-                </p>
+                <h3 className="mb-4 text-xl font-bold text-foreground">{t("microsporeTitle")}</h3>
+                <p className="text-muted-foreground">{t("microsporeP1")}</p>
+                <p className="mt-4 text-muted-foreground">{t("microsporeP2")}</p>
               </div>
             </motion.div>
           </div>
@@ -133,7 +115,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission Section */}
-      <section className="bg-muted/30 py-16 lg:py-24">
+      <section className="bg-gradient-to-b from-muted/20 via-muted/40 to-muted/20 py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <div className="grid gap-8 lg:grid-cols-2">
             <motion.div
@@ -141,27 +123,16 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="rounded-2xl border border-border bg-card p-8"
+              className="rounded-2xl border border-white/40 bg-white/60 backdrop-blur-sm p-8 shadow-lg shadow-black/5"
             >
-              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-lg shadow-primary/25 ring-1 ring-white/20">
                 <Target className="h-7 w-7" />
               </div>
-              <h3 className="mb-4 text-2xl font-bold text-foreground">Η Αποστολή μας</h3>
+              <h3 className="mb-4 text-2xl font-bold text-foreground">{t("ourMission")}</h3>
               <div className="space-y-4 text-muted-foreground">
-                <p>
-                  Έχουμε αναπτύξει και προσφέρουμε καινοτόμες και οικολογικά βιώσιμες λύσεις βιοτεχνολογίας,
-                  οι οποίες είναι αποτελεσματικές τόσο στον τομέα της θρέψης των φυτών όσο και στην ανάκαμψη
-                  του περιβάλλοντος.
-                </p>
-                <p>
-                  Τα αποτελέσματα της εργασίας μας είναι: ανάπτυξη του ριζικού συστήματος, βελτίωση της
-                  ανάπτυξης των φυτών και φυσική αντοχή στις καταπονήσεις, προκειμένου να διασφαλιστεί
-                  ένα βιώσιμο μέλλον για τις σημερινές και τις μελλοντικές γενιές.
-                </p>
-                <p>
-                  Προσφέρουμε εναλλακτικές λύσεις έναντι παραδοσιακών λιπασμάτων και δημιουργούμε
-                  προστιθέμενη αξία για να κάνουμε τη διαφορά.
-                </p>
+                <p>{t("missionP1")}</p>
+                <p>{t("missionP2")}</p>
+                <p>{t("missionP3")}</p>
               </div>
             </motion.div>
 
@@ -170,24 +141,15 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="rounded-2xl border border-border bg-card p-8"
+              className="rounded-2xl border border-white/40 bg-white/60 backdrop-blur-sm p-8 shadow-lg shadow-black/5"
             >
-              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-accent text-accent-foreground">
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-accent/80 text-accent-foreground shadow-lg shadow-accent/25 ring-1 ring-white/20">
                 <FlaskConical className="h-7 w-7" />
               </div>
-              <h3 className="mb-4 text-2xl font-bold text-foreground">Έρευνα & Ανάπτυξη</h3>
+              <h3 className="mb-4 text-2xl font-bold text-foreground">{t("rdTitle")}</h3>
               <div className="space-y-4 text-muted-foreground">
-                <p>
-                  Ο τομέας έρευνας και ανάπτυξης διαδραματίζει κεντρικό ρόλο στην εταιρική στρατηγική.
-                  Η Microspore έχει ένα προηγμένο εργαστήριο και μια ομάδα ερευνητών που εργάζονται με
-                  πλήρη απασχόληση σε έργα για την ανάπτυξη νέων πρωτοτύπων λιπασμάτων, με ιδιαίτερη
-                  έμφαση στα βιολογικά.
-                </p>
-                <p>
-                  Η καινοτομία και τα διπλώματα ευρεσιτεχνίας μας σχετίζονται με τις μεθόδους αποθήκευσης
-                  και εφαρμογής των λιπασμάτων, με διεργασίες παρασκευής των εμβολίων μικροοργανισμών
-                  και την παραγωγή των μυκόριζων.
-                </p>
+                <p>{t("rdP1")}</p>
+                <p>{t("rdP2")}</p>
               </div>
             </motion.div>
           </div>
@@ -204,24 +166,15 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <h2 className="mb-6 text-3xl font-bold text-foreground lg:text-4xl">Η Δέσμευσή μας</h2>
-            <p className="text-lg text-muted-foreground">
-              Το έργο μας κινείται με γνώμονα, τα προϊόντα και οι υπηρεσίες μας να είναι άριστης ποιότητας.
-              Έχουν σχεδιαστεί για να ανταποκριθούν στις απαιτήσεις των πελατών μας και βασίζονται σε ένα
-              σαφές σύνολο αρχών που περιλαμβάνουν: υπευθυνότητα, ακεραιότητα, εμφάνιση, αντοχή,
-              εφευρετικότητα.
-            </p>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Λαμβάνοντας υπόψη όλες αυτές τις πτυχές, έχουμε την δυνατότητα και την επιθυμία να
-              προσφέρουμε βιώσιμες λύσεις για την αντιμετώπιση των μεγάλων παγκόσμιων προκλήσεων της
-              εποχής μας, ιδίως την έλλειψη πόρων, την διατροφική ασφάλεια και την υπερθέρμανση του πλανήτη.
-            </p>
+            <h2 className="mb-6 text-3xl font-bold text-foreground lg:text-4xl">{t("ourCommitment")}</h2>
+            <p className="text-lg text-muted-foreground">{t("commitmentP1")}</p>
+            <p className="mt-4 text-lg text-muted-foreground">{t("commitmentP2")}</p>
           </motion.div>
         </div>
       </section>
 
       {/* Values */}
-      <section className="bg-muted/30 py-16 lg:py-24">
+      <section className="bg-gradient-to-b from-muted/20 via-muted/40 to-muted/20 py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -230,9 +183,9 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
             className="mb-12 text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold text-foreground lg:text-4xl">Οι Αξίες μας</h2>
+            <h2 className="mb-4 text-3xl font-bold text-foreground lg:text-4xl">{t("ourValues")}</h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              Οι αρχές που καθοδηγούν κάθε μας δράση
+              {t("valuesSubtitle")}
             </p>
           </motion.div>
 
@@ -249,9 +202,9 @@ export default function AboutPage() {
                 <motion.div
                   key={value.title}
                   variants={itemVariants}
-                  className="rounded-2xl border border-border bg-card p-6 text-center transition-all hover:border-primary/50 hover:shadow-lg"
+                  className="rounded-2xl border border-white/40 bg-white/60 backdrop-blur-sm p-6 text-center shadow-lg shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10"
                 >
-                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 text-primary ring-1 ring-primary/20">
                     <Icon className="h-7 w-7" />
                   </div>
                   <h3 className="mb-2 text-lg font-semibold text-foreground">{value.title}</h3>
@@ -273,9 +226,9 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
             className="mb-12 text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold text-foreground lg:text-4xl">Η Πορεία μας</h2>
+            <h2 className="mb-4 text-3xl font-bold text-foreground lg:text-4xl">{t("ourJourney")}</h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              Σημαντικοί σταθμοί στην ιστορία μας
+              {t("journeySubtitle")}
             </p>
           </motion.div>
 
@@ -297,7 +250,7 @@ export default function AboutPage() {
                 >
                   <div className="flex-1 md:pr-8 md:text-right">
                     {index % 2 === 0 && (
-                      <div className="rounded-xl border border-border bg-card p-6 md:ml-auto md:max-w-md">
+                      <div className="rounded-xl border border-white/40 bg-white/60 backdrop-blur-sm p-6 shadow-lg shadow-black/5 md:ml-auto md:max-w-md">
                         <div className="mb-2 text-2xl font-bold text-primary">{milestone.year}</div>
                         <h3 className="mb-2 text-lg font-semibold text-foreground">
                           {milestone.title}
@@ -312,7 +265,7 @@ export default function AboutPage() {
 
                   <div className="flex-1 md:pl-8">
                     {index % 2 !== 0 && (
-                      <div className="rounded-xl border border-border bg-card p-6 md:max-w-md">
+                      <div className="rounded-xl border border-white/40 bg-white/60 backdrop-blur-sm p-6 shadow-lg shadow-black/5 md:max-w-md">
                         <div className="mb-2 text-2xl font-bold text-primary">{milestone.year}</div>
                         <h3 className="mb-2 text-lg font-semibold text-foreground">
                           {milestone.title}
@@ -329,14 +282,14 @@ export default function AboutPage() {
       </section>
 
       {/* Stats */}
-      <section className="bg-primary py-16 lg:py-20">
+      <section className="bg-gradient-to-br from-primary via-primary to-primary/90 py-16 lg:py-20 shadow-2xl shadow-primary/25 ring-1 ring-white/10">
         <div className="container mx-auto px-4">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: TrendingUp, value: "12+", label: "Χρόνια στην Ελλάδα" },
-              { icon: Users, value: "500+", label: "Συνεργαζόμενοι Αγρότες" },
-              { icon: Globe, value: "13", label: "Περιφέρειες Κάλυψης" },
-              { icon: Microscope, value: "100+", label: "Προϊόντα Βιοτεχνολογίας" },
+              { icon: TrendingUp, value: "12+", label: th("yearsInGreece") },
+              { icon: Users, value: "500+", label: th("partnerFarmers") },
+              { icon: Globe, value: "13", label: t("regionsCoverage") },
+              { icon: Microscope, value: "100+", label: t("biotechProducts") },
             ].map((stat, index) => {
               const Icon = stat.icon;
               return (

@@ -1,12 +1,16 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
+  const t = useTranslations("hero");
+  const tc = useTranslations("common");
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-accent/5">
       {/* Background Pattern */}
@@ -24,41 +28,39 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-foreground lg:text-5xl xl:text-6xl">
-              Λιπάσματα Υψηλής Ποιότητας για{" "}
-              <span className="text-primary">Εξαιρετικές Σοδειές</span>
+              {t("title")}{" "}
+              <span className="text-primary">{t("titleHighlight")}</span>
             </h1>
 
             <p className="mb-8 max-w-lg text-lg text-muted-foreground">
-              Η Comerco Agrotechnology είναι ένας από τους μεγαλύτερους παραγωγούς φυσικών και
-              βιολογικών λιπασμάτων στην Ευρώπη. Προσφέρουμε καινοτόμες και οικολογικά βιώσιμες
-              λύσεις βιοτεχνολογίας για τη θρέψη των φυτών.
+              {t("description")}
             </p>
 
             <div className="flex flex-col gap-4 sm:flex-row">
-              <Button asChild size="lg" className="gap-2">
+              <Button asChild size="lg" className="gap-2 rounded-full px-8 shadow-lg shadow-primary/25 transition-all duration-300 hover:shadow-xl hover:shadow-primary/30">
                 <Link href="/products">
-                  Δείτε τα Προϊόντα
+                  {t("viewProducts")}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href="/contact">Επικοινωνία</Link>
+              <Button asChild variant="outline" size="lg" className="rounded-full border-2 px-8 transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary">
+                <Link href="/contact">{tc("contact")}</Link>
               </Button>
             </div>
 
             {/* Trust Indicators */}
-            <div className="mt-12 grid grid-cols-3 gap-6">
-              <div className="text-center sm:text-left">
+            <div className="mt-12 grid grid-cols-3 gap-4">
+              <div className="rounded-2xl bg-white/60 backdrop-blur-sm border border-white/40 p-4 text-center shadow-lg shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:shadow-xl">
                 <div className="text-3xl font-bold text-primary lg:text-4xl">12+</div>
-                <div className="text-sm text-muted-foreground">Χρόνια στην Ελλάδα</div>
+                <div className="text-xs text-muted-foreground sm:text-sm">{t("yearsInGreece")}</div>
               </div>
-              <div className="text-center sm:text-left">
+              <div className="rounded-2xl bg-white/60 backdrop-blur-sm border border-white/40 p-4 text-center shadow-lg shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:shadow-xl">
                 <div className="text-3xl font-bold text-primary lg:text-4xl">500+</div>
-                <div className="text-sm text-muted-foreground">Συνεργαζόμενοι Αγρότες</div>
+                <div className="text-xs text-muted-foreground sm:text-sm">{t("partnerFarmers")}</div>
               </div>
-              <div className="text-center sm:text-left">
+              <div className="rounded-2xl bg-white/60 backdrop-blur-sm border border-white/40 p-4 text-center shadow-lg shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:shadow-xl">
                 <div className="text-3xl font-bold text-primary lg:text-4xl">100%</div>
-                <div className="text-sm text-muted-foreground">Κάλυψη Ελλάδας</div>
+                <div className="text-xs text-muted-foreground sm:text-sm">{t("greeceCoverage")}</div>
               </div>
             </div>
           </motion.div>
@@ -70,7 +72,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative mx-auto w-full max-w-md lg:max-w-lg"
           >
-            <div className="relative aspect-[3/4] overflow-hidden rounded-3xl">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-3xl border border-white/30 shadow-2xl shadow-black/10 ring-1 ring-black/5">
               <Image
                 src="/images/hero.png"
                 alt="Comerco Agrotechnology - Λιπάσματα υψηλής ποιότητας"
@@ -78,6 +80,8 @@ export default function Hero() {
                 className="object-cover"
                 priority
               />
+              {/* Glass overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-white/10" />
             </div>
           </motion.div>
         </div>

@@ -44,17 +44,29 @@
   },
   "products": {
     "title": "Our Products",
-    "subtitle": "Discover our complete range of products",
+    "subtitle": "Explore our complete range of products. From main element fertilizers to biostimulants and new generation organic fertilizers.",
     "viewCategory": "View Category",
-    "viewProduct": "View Product",
+    "viewProduct": "View Products",
     "allProducts": "All Products",
-    "categories": "Categories"
+    "categories": "Categories",
+    "notFoundTitle": "Didn't find what you're looking for?",
+    "notFoundDesc": "Our product range is extensive. Contact us for specialized products or custom blends for your specific crop needs.",
+    "contactUs": "Contact Us",
+    "ourCategories": "Our Product Categories",
+    "categoriesDesc": "Complete range of fertilizers for every agricultural need. From basic nutrients to specialized solutions.",
+    "viewAllProducts": "View All Products",
+    "backToProducts": "Back to Products",
+    "productCatalog": "Product Catalog",
+    "catalogComingSoon": "The product catalog for this category will be updated soon. Contact us for information about available products and wholesale prices.",
+    "requestPriceList": "Request Price List",
+    "call": "Call",
+    "otherCategories": "Other Categories"
   },
   "about": {
     "title": "About Comerco",
     "subtitle": "Comerco Agrotechnology is one of the largest producers of natural and organic fertilizers in Europe with products available worldwide.",
     "ourStory": "Our Story",
-    "storyP1": "Desertification and soil erosion caused by chemical phenomena have devastating effects on agriculture. Thanks to our research, we created and selected 'smart microbes' that form the basis of biotech solutions.",
+    "storyP1": "Desertification and soil erosion caused by chemical phenomena have devastating effects on agriculture. Thanks to our research, we developed and selected beneficial microorganisms that form the basis of our biotechnology solutions.",
     "storyP2": "Comerco Agrotechnology produces and distributes various lines of biological and natural fertilizers, organic-based fertilizers, hydrolyzed fertilizers and slow-release fertilizers.",
     "storyP3": "Our company produces and distributes a wide variety of organic fertilizers in liquid and granular form. Our development and research team creates new fertilizer blends for the multiple needs of our customers.",
     "microsporeTitle": "Microspore in Greece",
@@ -66,9 +78,9 @@
     "missionP3": "We offer alternative solutions to traditional fertilizers and create added value to make a difference.",
     "rdTitle": "Research & Development",
     "rdP1": "The research and development sector plays a central role in corporate strategy. Microspore has an advanced laboratory and a team of researchers working full-time on projects to develop new fertilizer prototypes, with particular emphasis on organic ones.",
-    "rdP2": "Our innovation and patents relate to fertilizer storage and application methods, microorganism vaccine preparation processes and mycorrhizae production.",
+    "rdP2": "Our innovation and patents relate to fertilizer storage and application methods, microbial inoculant preparation processes, and mycorrhizae production.",
     "ourCommitment": "Our Commitment",
-    "commitmentP1": "Our work is guided by ensuring our products and services are of the highest quality. They are designed to meet our customers' requirements and are based on a clear set of principles including: responsibility, integrity, appearance, durability, inventiveness.",
+    "commitmentP1": "Our work is guided by ensuring our products and services are of the highest quality. They are designed to meet our customers' requirements and are based on a clear set of principles including: responsibility, integrity, excellence, resilience, and innovation.",
     "commitmentP2": "Taking all these aspects into account, we have the ability and desire to offer sustainable solutions to address the major global challenges of our time, particularly resource scarcity, food security and global warming.",
     "ourValues": "Our Values",
     "valuesSubtitle": "The principles that guide our every action",
@@ -97,11 +109,19 @@
   },
   "distributors": {
     "title": "Our Partners",
-    "subtitle": "Distribution network throughout Greece",
+    "subtitle": "Find your local agronomist. Click on any area on the map to see contact details.",
     "findDistributor": "Find a Partner",
     "region": "Region",
     "phone": "Phone",
-    "mapTitle": "Partners Map"
+    "mapTitle": "Click on a pin to see contact details",
+    "contact": "Contact",
+    "callComerco": "Call Comerco",
+    "selectRegion": "Select Region",
+    "selectRegionDesc": "Click on any colored area on the map to see the partner's contact details.",
+    "allPartners": "All Partners by Region",
+    "teamCoversGreece": "Our team covers all of Greece",
+    "notFoundTitle": "Didn't find your area?",
+    "notFoundDesc": "Contact our head office and we will connect you with the right partner."
   },
   "contact": {
     "title": "Contact",
@@ -127,15 +147,37 @@
     "partners": "Partners",
     "followUs": "Follow Us"
   },
+  "stats": {
+    "title": "Comerco in Numbers",
+    "years": "Years in Greece",
+    "farmers": "Partner Farmers",
+    "regions": "Regions",
+    "products": "Products"
+  },
+  "showcase": {
+    "title": "Biotechnology in Service of Agriculture",
+    "subtitle": "From the laboratory to the field - innovative solutions for sustainable farming",
+    "tagline": "Science • Nature • Results",
+    "showcase1": "Research and development",
+    "showcase2": "Healthy crops",
+    "showcase3": "Sustainable agriculture",
+    "showcase4": "Innovative products"
+  },
   "cookies": {
-    "title": "Cookie Usage",
+    "title": "We Use Cookies",
     "description": "We use cookies to improve your experience on our website.",
+    "readPrivacy": "Read our",
+    "forMoreInfo": "for more information.",
     "acceptAll": "Accept All",
-    "rejectAll": "Reject All",
-    "customize": "Customize",
-    "necessary": "Necessary",
-    "analytics": "Analytics",
-    "marketing": "Marketing",
-    "save": "Save"
+    "acceptNecessary": "Necessary Only",
+    "settings": "Settings",
+    "cookieSettings": "Cookie Settings",
+    "necessaryCookies": "Necessary Cookies",
+    "necessaryDesc": "These are required for the website to function and cannot be disabled.",
+    "analyticsCookies": "Analytics Cookies",
+    "analyticsDesc": "Help us understand how you use the website.",
+    "marketingCookies": "Marketing Cookies",
+    "marketingDesc": "Used to show you relevant advertisements.",
+    "savePreferences": "Save Preferences"
   }
 }

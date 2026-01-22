@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
 
             <section className="mt-8">
               <h2 className="text-2xl font-semibold text-foreground">2. Στοιχεία Υπεύθυνου Επεξεργασίας</h2>
-              <div className="rounded-lg border border-border bg-muted/30 p-4">
+              <div className="rounded-lg border border-white/40 bg-white/60 backdrop-blur-sm p-4 shadow-sm">
                 <p className="mb-2 text-foreground"><strong>Επωνυμία:</strong> Microspore Hellas – Sacom Hellas</p>
                 <p className="mb-2 text-foreground"><strong>Διεύθυνση:</strong> Πανεπιστημίου 44, 10679 Αθήνα</p>
                 <p className="mb-2 text-foreground"><strong>Τηλέφωνο:</strong> 210 361 2754, 210 654 8176</p>

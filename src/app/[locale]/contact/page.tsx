@@ -1,36 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Linkedin } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
-const contactInfo = [
-  {
-    icon: Phone,
-    title: "Τηλέφωνο",
-    details: ["210 361 2754", "210 654 8176"],
-    action: "tel:+302103612754",
-  },
-  {
-    icon: Mail,
-    title: "Email",
-    details: ["info@comerco.gr"],
-    action: "mailto:info@comerco.gr",
-  },
-  {
-    icon: MapPin,
-    title: "Διεύθυνση",
-    details: ["Microspore Hellas – Sacom Hellas", "Πανεπιστημίου 44, 10679 Αθήνα"],
-    action: "https://maps.google.com/?q=Πανεπιστημίου+44+Αθήνα",
-  },
-  {
-    icon: Clock,
-    title: "Ωράριο Λειτουργίας",
-    details: ["Δευ - Παρ: 9:00 - 17:00", "Σάβ - Κυρ: Κλειστά"],
-    action: null,
-  },
-];
 
 const socials = [
   {
@@ -54,6 +28,35 @@ const socials = [
 ];
 
 export default function ContactPage() {
+  const t = useTranslations("contact");
+
+  const contactInfo = [
+    {
+      icon: Phone,
+      title: t("phone"),
+      details: ["210 361 2754", "210 654 8176"],
+      action: "tel:+302103612754",
+    },
+    {
+      icon: Mail,
+      title: t("email"),
+      details: ["info@comerco.gr"],
+      action: "mailto:info@comerco.gr",
+    },
+    {
+      icon: MapPin,
+      title: t("address"),
+      details: ["Microspore Hellas – Sacom Hellas", "Πανεπιστημίου 44, 10679 Αθήνα"],
+      action: "https://maps.google.com/?q=Πανεπιστημίου+44+Αθήνα",
+    },
+    {
+      icon: Clock,
+      title: t("businessHours"),
+      details: [t("weekdays"), t("weekends")],
+      action: null,
+    },
+  ];
+
   return (
     <>
       {/* Hero Section */}
@@ -65,10 +68,9 @@ export default function ContactPage() {
             transition={{ duration: 0.5 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <h1 className="mb-4 text-4xl font-bold text-foreground lg:text-5xl">Επικοινωνία</h1>
+            <h1 className="mb-4 text-4xl font-bold text-foreground lg:text-5xl">{t("title")}</h1>
             <p className="text-lg text-muted-foreground">
-              Επικοινωνήστε μαζί μας για οποιαδήποτε απορία ή πληροφορία σχετικά με τα προϊόντα μας.
-              Είμαστε εδώ για να σας εξυπηρετήσουμε.
+              {t("subtitle")}
             </p>
           </motion.div>
         </div>
@@ -84,7 +86,7 @@ export default function ContactPage() {
 
               const cardContent = (
                 <div className="flex h-full flex-col items-center text-center p-8">
-                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg">
+                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-lg shadow-primary/25 ring-1 ring-white/20">
                     <Icon className="h-8 w-8" />
                   </div>
                   <h3 className="mb-3 text-lg font-bold text-foreground">{info.title}</h3>
@@ -107,12 +109,12 @@ export default function ContactPage() {
                 >
                   {isClickable ? (
                     <a href={info.action!} target={info.action?.startsWith("https") ? "_blank" : undefined} rel="noopener noreferrer">
-                      <Card className="group h-full cursor-pointer border-2 border-transparent bg-card transition-all hover:border-primary hover:shadow-xl">
+                      <Card className="group h-full cursor-pointer border border-white/40 bg-white/60 backdrop-blur-sm shadow-lg shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10">
                         {cardContent}
                       </Card>
                     </a>
                   ) : (
-                    <Card className="h-full border-2 border-transparent bg-card">
+                    <Card className="h-full border border-white/40 bg-white/60 backdrop-blur-sm shadow-lg shadow-black/5">
                       {cardContent}
                     </Card>
                   )}
@@ -124,7 +126,7 @@ export default function ContactPage() {
       </section>
 
       {/* Map & Socials Section */}
-      <section className="bg-muted/30 py-12 lg:py-16">
+      <section className="bg-gradient-to-b from-muted/20 via-muted/40 to-muted/20 py-12 lg:py-16">
         <div className="container mx-auto px-4">
           <div className="grid gap-8 lg:grid-cols-2">
             {/* Map */}
@@ -134,7 +136,7 @@ export default function ContactPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="h-full overflow-hidden">
+              <Card className="h-full overflow-hidden border border-white/40 bg-white/60 backdrop-blur-sm shadow-xl shadow-black/10 rounded-2xl">
                 <CardContent className="h-full min-h-[400px] p-0">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3144.5288456!2d23.7325!3d37.9838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bd3b3b3b3b3b%3A0x0!2sPanepistimiou%2044%2C%20Athens%20106%2079!5e0!3m2!1sen!2sgr!4v1234567890"
@@ -159,11 +161,11 @@ export default function ContactPage() {
               className="flex flex-col gap-6"
             >
               {/* Social Media */}
-              <Card>
+              <Card className="border border-white/40 bg-white/60 backdrop-blur-sm shadow-lg shadow-black/5 rounded-2xl">
                 <CardContent className="p-6 lg:p-8">
-                  <h3 className="mb-2 text-xl font-bold text-foreground">Ακολουθήστε μας</h3>
+                  <h3 className="mb-2 text-xl font-bold text-foreground">{t("followUs")}</h3>
                   <p className="mb-6 text-muted-foreground">
-                    Μείνετε ενημερωμένοι για τα νέα μας προϊόντα και τις τελευταίες εξελίξεις.
+                    {t("followUsDesc")}
                   </p>
                   <div className="grid gap-4">
                     {socials.map((social) => {
@@ -174,7 +176,7 @@ export default function ContactPage() {
                           href={social.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group flex items-center gap-4 rounded-xl border border-border bg-card p-4 transition-all hover:border-transparent hover:shadow-md"
+                          className="group flex items-center gap-4 rounded-xl border border-white/40 bg-white/40 backdrop-blur-sm p-4 transition-all duration-300 hover:bg-white/70 hover:shadow-lg"
                         >
                           <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-muted text-foreground transition-all ${social.bgColor} group-hover:text-white`}>
                             <Icon className="h-6 w-6" />
@@ -191,11 +193,11 @@ export default function ContactPage() {
               </Card>
 
               {/* Quick Contact */}
-              <Card className="bg-primary text-primary-foreground">
+              <Card className="bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground shadow-xl shadow-primary/25 rounded-2xl ring-1 ring-white/10">
                 <CardContent className="p-6">
-                  <h3 className="mb-4 text-xl font-semibold">Χρειάζεστε Άμεση Βοήθεια;</h3>
+                  <h3 className="mb-4 text-xl font-semibold">{t("needHelp")}</h3>
                   <p className="mb-4 text-primary-foreground/90">
-                    Καλέστε μας απευθείας για επείγουσες ερωτήσεις.
+                    {t("needHelpDesc")}
                   </p>
                   <Button variant="secondary" className="w-full" asChild>
                     <a href="tel:+302103612754">

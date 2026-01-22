@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { Leaf, Microscope, Package, Droplets, Sparkles, Settings, ArrowRight } from "lucide-react";
 import { productCategories } from "@/data/products";
@@ -34,6 +35,9 @@ const itemVariants = {
 };
 
 export default function ProductsPage() {
+  const t = useTranslations("products");
+  const locale = useLocale();
+
   return (
     <>
       {/* Hero Section */}
@@ -45,10 +49,9 @@ export default function ProductsPage() {
             transition={{ duration: 0.5 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <h1 className="mb-4 text-4xl font-bold text-foreground lg:text-5xl">Τα Προϊόντα μας</h1>
+            <h1 className="mb-4 text-4xl font-bold text-foreground lg:text-5xl">{t("title")}</h1>
             <p className="text-lg text-muted-foreground">
-              Εξερευνήστε την ολοκληρωμένη γκάμα προϊόντων μας. Από λιπάσματα κύριων στοιχείων έως
-              βιοδιεγέρτες και οργανικά λιπάσματα νέου τύπου.
+              {t("subtitle")}
             </p>
           </motion.div>
         </div>
@@ -69,18 +72,20 @@ export default function ProductsPage() {
                 <motion.div key={category.id} variants={itemVariants}>
                   <Link
                     href={`/products/${category.id}`}
-                    className="group block h-full rounded-2xl border border-border bg-card p-8 transition-all hover:border-primary/50 hover:shadow-xl"
+                    className="group block h-full rounded-2xl border border-white/40 bg-white/60 backdrop-blur-sm p-8 shadow-lg shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10"
                   >
-                    <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-all group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
+                    <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 text-primary ring-1 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:from-primary group-hover:to-primary/80 group-hover:text-white group-hover:shadow-lg group-hover:shadow-primary/25">
                       <Icon className="h-8 w-8" />
                     </div>
                     <h2 className="mb-3 text-xl font-bold leading-tight text-foreground group-hover:text-primary">
-                      {category.name}
+                      {locale === "en" ? category.nameEn : category.name}
                     </h2>
-                    <p className="mb-6 text-muted-foreground">{category.description}</p>
+                    <p className="mb-6 text-muted-foreground">
+                      {locale === "en" ? category.descriptionEn : category.description}
+                    </p>
 
                     <div className="flex items-center gap-2 text-sm font-medium text-primary">
-                      Δείτε Προϊόντα
+                      {t("viewProduct")}
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </Link>
@@ -92,7 +97,7 @@ export default function ProductsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-muted/50 py-16 lg:py-20">
+      <section className="bg-gradient-to-b from-muted/30 via-muted/50 to-muted/30 py-16 lg:py-20">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -102,17 +107,16 @@ export default function ProductsPage() {
             className="mx-auto max-w-2xl text-center"
           >
             <h2 className="mb-4 text-2xl font-bold text-foreground lg:text-3xl">
-              Δεν βρήκατε αυτό που ψάχνετε;
+              {t("notFoundTitle")}
             </h2>
             <p className="mb-6 text-muted-foreground">
-              Η γκάμα προϊόντων μας είναι εκτενής. Επικοινωνήστε μαζί μας για εξειδικευμένα προϊόντα
-              ή προσαρμοσμένα μείγματα για τις συγκεκριμένες ανάγκες των καλλιεργειών σας.
+              {t("notFoundDesc")}
             </p>
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
             >
-              Επικοινωνήστε μαζί μας
+              {t("contactUs")}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </motion.div>

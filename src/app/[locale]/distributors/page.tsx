@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Phone, MapPin, User, X, Building2, Map } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,7 +14,7 @@ const GreeceLeafletMap = dynamic(() => import("@/components/map/GreeceLeafletMap
   ssr: false,
   loading: () => (
     <div className="flex h-[500px] w-full items-center justify-center rounded-xl bg-muted">
-      <div className="text-muted-foreground">Φόρτωση χάρτη...</div>
+      <div className="text-muted-foreground">Loading map...</div>
     </div>
   ),
 });
@@ -22,6 +23,8 @@ export default function DistributorsPage() {
   const [selectedDistributor, setSelectedDistributor] = useState<Distributor | null>(null);
   const [selectedRegionName, setSelectedRegionName] = useState<string | null>(null);
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
+  const t = useTranslations("distributors");
+  const tc = useTranslations("common");
 
   const handleDistributorSelect = (distributor: Distributor) => {
     setSelectedDistributor(distributor);
@@ -47,11 +50,10 @@ export default function DistributorsPage() {
             className="mx-auto max-w-3xl text-center"
           >
             <h1 className="mb-4 text-4xl font-bold text-foreground lg:text-5xl">
-              Οι Συνεργάτες μας
+              {t("title")}
             </h1>
             <p className="text-lg text-muted-foreground">
-              Βρείτε τον τοπικό σας γεωπόνο. Κάντε κλικ σε οποιαδήποτε περιοχή στον χάρτη για να
-              δείτε τα στοιχεία επικοινωνίας.
+              {t("subtitle")}
             </p>
           </motion.div>
         </div>
@@ -66,12 +68,12 @@ export default function DistributorsPage() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="rounded-2xl border border-border bg-card p-6"
+              className="rounded-2xl border border-white/40 bg-white/60 backdrop-blur-sm p-6 shadow-lg shadow-black/5"
             >
               <div className="mb-4 flex items-center gap-2">
                 <Map className="h-5 w-5 text-primary" />
                 <h2 className="text-xl font-semibold text-foreground">
-                  Κάντε κλικ σε μια πινέζα για να δείτε τα στοιχεία επικοινωνίας
+                  {t("mapTitle")}
                 </h2>
               </div>
               <GreeceLeafletMap
@@ -95,7 +97,7 @@ export default function DistributorsPage() {
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Card className="border-primary/50">
+                    <Card className="border-primary/30 bg-white/60 backdrop-blur-sm shadow-xl shadow-primary/10">
                       <CardHeader className="pb-4">
                         <div className="flex items-start justify-between">
                           <div>
@@ -129,7 +131,7 @@ export default function DistributorsPage() {
 
                         {/* Contacts */}
                         <div className="space-y-3">
-                          <h3 className="font-semibold text-foreground">Επικοινωνία</h3>
+                          <h3 className="font-semibold text-foreground">{t("contact")}</h3>
                           {selectedDistributor.contacts.map((contact, index) => (
                             <div
                               key={index}
@@ -160,7 +162,7 @@ export default function DistributorsPage() {
                         <Button className="w-full" asChild>
                           <a href="tel:+302103612754">
                             <Phone className="mr-2 h-4 w-4" />
-                            Καλέστε την Comerco
+                            {t("callComerco")}
                           </a>
                         </Button>
                       </CardContent>
@@ -172,16 +174,15 @@ export default function DistributorsPage() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="flex h-full min-h-[400px] items-center justify-center rounded-2xl border-2 border-dashed border-border bg-muted/30 p-8"
+                    className="flex h-full min-h-[400px] items-center justify-center rounded-2xl border-2 border-dashed border-primary/20 bg-white/40 backdrop-blur-sm p-8"
                   >
                     <div className="text-center">
                       <MapPin className="mx-auto mb-4 h-12 w-12 text-muted-foreground/50" />
                       <h3 className="mb-2 text-lg font-semibold text-foreground">
-                        Επιλέξτε Περιοχή
+                        {t("selectRegion")}
                       </h3>
                       <p className="text-muted-foreground">
-                        Κάντε κλικ σε οποιαδήποτε χρωματισμένη περιοχή στον χάρτη για να δείτε
-                        τα στοιχεία επικοινωνίας του συνεργάτη.
+                        {t("selectRegionDesc")}
                       </p>
                     </div>
                   </motion.div>
@@ -193,7 +194,7 @@ export default function DistributorsPage() {
       </section>
 
       {/* All Distributors Grid */}
-      <section className="bg-muted/30 py-12 lg:py-16">
+      <section className="bg-gradient-to-b from-muted/20 via-muted/40 to-muted/20 py-12 lg:py-16">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -203,10 +204,10 @@ export default function DistributorsPage() {
             className="mb-8"
           >
             <h2 className="mb-2 text-2xl font-bold text-foreground lg:text-3xl">
-              Όλοι οι Συνεργάτες ανά Περιοχή
+              {t("allPartners")}
             </h2>
             <p className="text-muted-foreground">
-              Η ομάδα μας καλύπτει όλη την Ελλάδα
+              {t("teamCoversGreece")}
             </p>
           </motion.div>
 
@@ -221,8 +222,8 @@ export default function DistributorsPage() {
                 className="h-full"
               >
                 <Card
-                  className={`flex h-full cursor-pointer flex-col transition-all hover:border-primary/50 hover:shadow-lg ${
-                    selectedDistributor?.id === distributor.id ? "border-primary" : ""
+                  className={`flex h-full cursor-pointer flex-col border-white/40 bg-white/60 backdrop-blur-sm shadow-lg shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10 ${
+                    selectedDistributor?.id === distributor.id ? "border-primary bg-white/80" : ""
                   }`}
                   onClick={() => handleDistributorCardClick(distributor)}
                 >
@@ -270,14 +271,13 @@ export default function DistributorsPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="rounded-2xl bg-primary p-8 text-center lg:p-12"
+            className="rounded-2xl bg-gradient-to-br from-primary via-primary to-primary/90 p-8 text-center shadow-2xl shadow-primary/25 ring-1 ring-white/10 lg:p-12"
           >
             <h2 className="mb-4 text-2xl font-bold text-primary-foreground lg:text-3xl">
-              Δεν βρήκατε την περιοχή σας;
+              {t("notFoundTitle")}
             </h2>
             <p className="mb-6 text-primary-foreground/90">
-              Επικοινωνήστε με τα κεντρικά μας γραφεία και θα σας συνδέσουμε με τον κατάλληλο
-              συνεργάτη.
+              {t("notFoundDesc")}
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button variant="secondary" asChild>

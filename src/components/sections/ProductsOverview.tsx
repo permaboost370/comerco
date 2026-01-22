@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowRight, Leaf, FlaskConical, Boxes, Droplets, Sprout, Pipette, TreeDeciduous } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -36,6 +37,9 @@ const itemVariants = {
 };
 
 export default function ProductsOverview() {
+  const t = useTranslations("products");
+  const locale = useLocale();
+
   return (
     <section className="py-16 lg:py-24">
       <div className="container mx-auto px-4">
@@ -48,16 +52,15 @@ export default function ProductsOverview() {
         >
           <div>
             <h2 className="mb-4 text-3xl font-bold text-foreground lg:text-4xl">
-              Οι Κατηγορίες Προϊόντων μας
+              {t("ourCategories")}
             </h2>
             <p className="max-w-2xl text-lg text-muted-foreground">
-              Πλήρης γκάμα λιπασμάτων για κάθε γεωργική ανάγκη. Από βασικά θρεπτικά στοιχεία έως
-              εξειδικευμένες λύσεις.
+              {t("categoriesDesc")}
             </p>
           </div>
-          <Button asChild variant="outline" className="gap-2">
+          <Button asChild variant="outline" className="gap-2 rounded-full border-2 px-6 transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary hover:shadow-lg hover:shadow-primary/25">
             <Link href="/products">
-              Δείτε Όλα τα Προϊόντα
+              {t("viewAllProducts")}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
@@ -76,15 +79,17 @@ export default function ProductsOverview() {
               <motion.div key={category.id} variants={itemVariants}>
                 <Link
                   href={`/products/${category.id}`}
-                  className="group block h-full rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/50 hover:shadow-lg"
+                  className="group block h-full rounded-2xl border border-white/40 bg-white/60 backdrop-blur-sm p-6 shadow-lg shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10"
                 >
-                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 text-primary ring-1 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:from-primary group-hover:to-primary/80 group-hover:text-white group-hover:shadow-lg group-hover:shadow-primary/25">
                     <Icon className="h-7 w-7" />
                   </div>
                   <h3 className="mb-2 text-lg font-semibold leading-tight text-foreground group-hover:text-primary">
-                    {category.name}
+                    {locale === "en" ? category.nameEn : category.name}
                   </h3>
-                  <p className="text-sm text-muted-foreground">{category.description}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {locale === "en" ? category.descriptionEn : category.description}
+                  </p>
                 </Link>
               </motion.div>
             );

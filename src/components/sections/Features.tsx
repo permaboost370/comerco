@@ -1,15 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Leaf, Sprout, TreeDeciduous } from "lucide-react";
 
-const results = [
-  { icon: Sprout, text: "Ανάπτυξη ριζικού συστήματος" },
-  { icon: Leaf, text: "Βελτίωση ανάπτυξης φυτών" },
-  { icon: TreeDeciduous, text: "Φυσική αντοχή στις καταπονήσεις" },
-];
-
 export default function Features() {
+  const t = useTranslations("mission");
+
+  const results = [
+    { icon: Sprout, text: t("result1") },
+    { icon: Leaf, text: t("result2") },
+    { icon: TreeDeciduous, text: t("result3") },
+  ];
+
   return (
     <section className="relative overflow-hidden py-20 lg:py-28">
       {/* Background */}
@@ -25,7 +28,7 @@ export default function Features() {
           className="mb-16 text-center"
         >
           <h2 className="mb-4 text-3xl font-bold text-foreground lg:text-4xl xl:text-5xl">
-            Η Αποστολή μας
+            {t("title")}
           </h2>
           <div className="mx-auto h-1 w-20 rounded-full bg-primary" />
         </motion.div>
@@ -42,19 +45,18 @@ export default function Features() {
               className="flex flex-col justify-center"
             >
               <p className="mb-6 text-lg leading-relaxed text-muted-foreground lg:text-xl">
-                Έχουμε αναπτύξει και προσφέρουμε{" "}
+                {t("description1")}{" "}
                 <span className="font-semibold text-foreground">
-                  καινοτόμες και οικολογικά βιώσιμες λύσεις βιοτεχνολογίας
+                  {t("highlight1")}
                 </span>
-                , οι οποίες είναι αποτελεσματικές τόσο στον τομέα της θρέψης των φυτών
-                όσο και στην ανάκαμψη του περιβάλλοντος.
+                {t("description2")}
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Προσφέρουμε{" "}
+                {t("description3")}{" "}
                 <span className="font-semibold text-foreground">
-                  εναλλακτικές λύσεις έναντι παραδοσιακών λιπασμάτων
+                  {t("highlight2")}
                 </span>
-                , και δημιουργούμε προστιθέμενη αξία για να κάνουμε τη διαφορά.
+                {t("description4")}
               </p>
             </motion.div>
 
@@ -67,7 +69,7 @@ export default function Features() {
               className="space-y-4"
             >
               <p className="mb-2 text-sm font-medium uppercase tracking-wider text-primary">
-                Τα αποτελέσματα της εργασίας μας
+                {t("resultsTitle")}
               </p>
               {results.map((result, index) => {
                 const Icon = result.icon;
@@ -78,9 +80,9 @@ export default function Features() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
-                    className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition-all hover:border-primary/30 hover:shadow-lg"
+                    className="group flex items-center gap-4 rounded-2xl border border-white/40 bg-white/60 backdrop-blur-sm p-5 shadow-lg shadow-black/5 transition-all duration-300 hover:bg-white/80 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10"
                   >
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 text-primary ring-1 ring-primary/20 transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-primary/80 group-hover:text-white group-hover:shadow-lg group-hover:shadow-primary/25 group-hover:scale-110">
                       <Icon className="h-7 w-7" />
                     </div>
                     <span className="text-lg font-medium text-foreground">{result.text}</span>
@@ -96,11 +98,10 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-12 rounded-3xl bg-primary p-8 text-center text-primary-foreground lg:p-12"
+            className="mt-12 rounded-3xl bg-gradient-to-br from-primary via-primary to-primary/90 p-8 text-center text-primary-foreground shadow-2xl shadow-primary/25 lg:p-12 ring-1 ring-white/10"
           >
             <p className="mx-auto max-w-3xl text-lg lg:text-xl">
-              Για ένα <span className="font-bold">βιώσιμο μέλλον</span> για τις σημερινές
-              και τις μελλοντικές γενιές.
+              {t("futureVision")} <span className="font-bold">{t("sustainableFuture")}</span> {t("futureVisionEnd")}
             </p>
           </motion.div>
 

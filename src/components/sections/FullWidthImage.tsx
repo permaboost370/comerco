@@ -20,8 +20,10 @@ export default function FullWidthImage() {
           fill
           className="object-cover"
         />
-        {/* Optional overlay for better contrast if you add text */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+        {/* Premium gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-white/10" />
+        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-background to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background to-transparent" />
       </motion.div>
     </section>
   );
