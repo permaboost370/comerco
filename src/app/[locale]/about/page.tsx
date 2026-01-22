@@ -70,6 +70,10 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
             className="mx-auto max-w-3xl text-center"
           >
+            {/* Comerco C Logo */}
+            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary shadow-lg shadow-primary/25">
+              <span className="text-4xl font-bold text-white" style={{ fontFamily: 'Outfit, sans-serif' }}>C</span>
+            </div>
             <h1 className="mb-4 text-4xl font-bold text-foreground lg:text-5xl">{t("title")}</h1>
             <p className="text-lg text-muted-foreground">
               {t("subtitle")}
