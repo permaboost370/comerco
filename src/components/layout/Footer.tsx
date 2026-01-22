@@ -155,7 +155,7 @@ export default function Footer() {
               </h3>
               <div className="flex items-center gap-3">
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/comercoagrotechnology"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-11 w-11 items-center justify-center rounded-full bg-white/60 backdrop-blur-sm border border-white/40 text-primary shadow-sm transition-all duration-300 hover:scale-110 hover:bg-primary hover:text-white hover:border-primary hover:shadow-lg hover:shadow-primary/25"
@@ -164,7 +164,7 @@ export default function Footer() {
                   <span className="sr-only">Facebook</span>
                 </a>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/comerco_agrotechnology/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-11 w-11 items-center justify-center rounded-full bg-white/60 backdrop-blur-sm border border-white/40 text-primary shadow-sm transition-all duration-300 hover:scale-110 hover:bg-primary hover:text-white hover:border-primary hover:shadow-lg hover:shadow-primary/25"
@@ -173,7 +173,7 @@ export default function Footer() {
                   <span className="sr-only">Instagram</span>
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://gr.linkedin.com/company/comerco-agrotechnology"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-11 w-11 items-center justify-center rounded-full bg-white/60 backdrop-blur-sm border border-white/40 text-primary shadow-sm transition-all duration-300 hover:scale-110 hover:bg-primary hover:text-white hover:border-primary hover:shadow-lg hover:shadow-primary/25"

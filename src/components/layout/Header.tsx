@@ -64,7 +64,7 @@ export default function Header() {
                 >
                   <Link
                     href={link.href}
-                    className="group relative flex items-center gap-1.5 rounded-full px-5 py-2.5 text-[14px] font-semibold tracking-wide text-foreground/80 transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/25"
+                    className="group relative flex items-center gap-1.5 rounded-full border border-white/40 bg-white/30 px-5 py-2.5 text-[14px] font-semibold tracking-wide text-foreground/80 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/25"
                   >
                     {link.name}
                     <ChevronDown
@@ -125,7 +125,7 @@ export default function Header() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="rounded-full px-5 py-2.5 text-[14px] font-semibold tracking-wide text-foreground/80 transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/25"
+                  className="rounded-full border border-white/40 bg-white/30 px-5 py-2.5 text-[14px] font-semibold tracking-wide text-foreground/80 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/25"
                 >
                   {link.name}
                 </Link>

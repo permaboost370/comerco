@@ -10,19 +10,22 @@ const socials = [
   {
     icon: Facebook,
     name: "Facebook",
-    href: "https://facebook.com",
+    handle: "@comercoagrotechnology",
+    href: "https://www.facebook.com/comercoagrotechnology",
     bgColor: "group-hover:bg-[#1877F2]",
   },
   {
     icon: Instagram,
     name: "Instagram",
-    href: "https://instagram.com",
+    handle: "@comerco_agrotechnology",
+    href: "https://www.instagram.com/comerco_agrotechnology/",
     bgColor: "group-hover:bg-[#E4405F]",
   },
   {
     icon: Linkedin,
     name: "LinkedIn",
-    href: "https://linkedin.com",
+    handle: "comerco-agrotechnology",
+    href: "https://gr.linkedin.com/company/comerco-agrotechnology",
     bgColor: "group-hover:bg-[#0A66C2]",
   },
 ];
@@ -183,7 +186,7 @@ export default function ContactPage() {
                           </div>
                           <div>
                             <p className="font-semibold text-foreground">{social.name}</p>
-                            <p className="text-sm text-muted-foreground">@comerco.gr</p>
+                            <p className="text-sm text-muted-foreground">{social.handle}</p>
                           </div>
                         </a>
                       );
