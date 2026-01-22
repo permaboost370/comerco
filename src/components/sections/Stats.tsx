@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const stats = [
   { value: "25+", label: "Years in Business", description: "Serving Greek agriculture since 1999" },
-  { value: "500+", label: "Partner Farms", description: "Across all regions of Greece" },
+  { value: "1000+", label: "Partner Farms", description: "Across all regions of Greece" },
   { value: "50K+", label: "Tons Delivered", description: "Annually to Greek farmers" },
   { value: "13", label: "Regions Covered", description: "Complete nationwide coverage" },
 ];

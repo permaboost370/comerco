@@ -6,9 +6,9 @@ import { Calendar, Users, MapPin, Package } from "lucide-react";
 
 const stats = [
   { key: "years", icon: Calendar, value: "12+" },
-  { key: "farmers", icon: Users, value: "500+" },
+  { key: "farmers", icon: Users, value: "1000+" },
   { key: "regions", icon: MapPin, value: "13" },
-  { key: "products", icon: Package, value: "100+" },
+  { key: "products", icon: Package, value: "50+" },
 ];
 
 export default function StatsBanner() {

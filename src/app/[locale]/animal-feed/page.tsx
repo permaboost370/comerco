@@ -51,18 +51,17 @@ export default function AnimalFeedPage() {
   const t = useTranslations("animalFeed");
   const locale = useLocale();
   const [selectedProduct, setSelectedProduct] = useState<AnimalFeedProduct | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handlePlayVideo = () => {
     if (videoRef.current) {
       videoRef.current.play();
-      setIsPlaying(true);
+      setHasStarted(true);
     }
   };
 
-  const handleVideoPlay = () => setIsPlaying(true);
-  const handleVideoPause = () => setIsPlaying(false);
+  const handleVideoEnded = () => setHasStarted(false);
 
   const openModal = (product: AnimalFeedProduct) => {
     setSelectedProduct(product);
@@ -109,7 +108,7 @@ export default function AnimalFeedPage() {
       </section>
 
       {/* Video Section */}
-      <section className="py-16 lg:py-20">
+      <section className="py-12 lg:py-16">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -122,10 +121,8 @@ export default function AnimalFeedPage() {
                 <video
                   ref={videoRef}
                   className="w-full aspect-video"
-                  controls={isPlaying}
-                  onPlay={handleVideoPlay}
-                  onPause={handleVideoPause}
-                  onEnded={handleVideoPause}
+                  controls={hasStarted}
+                  onEnded={handleVideoEnded}
                   playsInline
                 >
                   <source src="/videos/animal-feed-video.mp4" type="video/mp4" />
@@ -135,7 +132,7 @@ export default function AnimalFeedPage() {
                 </video>
 
                 {/* Custom Play Button Overlay */}
-                {!isPlaying && (
+                {!hasStarted && (
                   <button
                     onClick={handlePlayVideo}
                     className="absolute inset-0 flex items-center justify-center bg-black/30 transition-all duration-300 hover:bg-black/40 cursor-pointer group"
@@ -152,7 +149,7 @@ export default function AnimalFeedPage() {
       </section>
 
       {/* Products Section */}
-      <section className="py-16 lg:py-24">
+      <section className="pt-8 pb-16 lg:pt-12 lg:pb-24">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
