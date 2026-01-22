@@ -142,7 +142,7 @@ export default function ContactPage() {
               <Card className="h-full overflow-hidden border border-white/40 bg-white/60 backdrop-blur-sm shadow-xl shadow-black/10 rounded-2xl">
                 <CardContent className="h-full min-h-[400px] p-0">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3144.5288456!2d23.7325!3d37.9838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bd3b3b3b3b3b%3A0x0!2sPanepistimiou%2044%2C%20Athens%20106%2079!5e0!3m2!1sen!2sgr!4v1234567890"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12578!2d23.7325!3d37.9838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bd3b3b3b3b3b%3A0x0!2sPanepistimiou%2044%2C%20Athens%20106%2079!5e0!3m2!1sen!2sgr!4v1234567890"
                     width="100%"
                     height="100%"
                     style={{ border: 0, minHeight: "400px" }}
