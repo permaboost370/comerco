@@ -43,7 +43,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/images/logo.svg"
+              src="/images/logo.png"
               alt="Comerco Agrotechnology"
               width={240}
               height={56}
@@ -155,7 +155,7 @@ export default function Header() {
               <div className="flex flex-col gap-6 pt-6">
                 <Link href="/" className="flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
                   <Image
-                    src="/images/logo.svg"
+                    src="/images/logo.png"
                     alt="Comerco Agrotechnology"
                     width={180}
                     height={40}

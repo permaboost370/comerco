@@ -5,7 +5,7 @@ export default function StructuredData() {
     name: "Comerco Agrotechnology",
     alternateName: ["Microspore Hellas", "Sacom Hellas"],
     url: "https://comerco.gr",
-    logo: "https://comerco.gr/images/logo.svg",
+    logo: "https://comerco.gr/images/logo.png",
     description:
       "Ένας από τους μεγαλύτερους παραγωγούς φυσικών και βιολογικών λιπασμάτων στην Ευρώπη. Καινοτόμες λύσεις βιοτεχνολογίας για βιώσιμη γεωργία.",
     foundingDate: "2012",
