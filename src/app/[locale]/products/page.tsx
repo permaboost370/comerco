@@ -54,8 +54,8 @@ export default function ProductsPage() {
             className="object-cover"
             priority
           />
-          {/* Overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-white/30" />
+          {/* Dark overlay for white text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/40" />
         </div>
 
         <div className="container relative mx-auto px-4">
