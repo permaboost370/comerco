@@ -20,12 +20,27 @@ export default function CookieConsent() {
   const tc = useTranslations("common");
 
   useEffect(() => {
-    const consent = localStorage.getItem("cookie-consent");
-    if (!consent) {
+    try {
+      const consent = localStorage.getItem("cookie-consent");
+      if (!consent) {
+        setShowBanner(true);
+      } else {
+        const parsed = JSON.parse(consent);
+        // Validate structure before using
+        if (parsed && typeof parsed === 'object' &&
+            'necessary' in parsed && 'analytics' in parsed && 'marketing' in parsed) {
+          setShowMinimized(true);
+          setPreferences(parsed);
+        } else {
+          // Invalid structure, reset
+          localStorage.removeItem("cookie-consent");
+          setShowBanner(true);
+        }
+      }
+    } catch {
+      // JSON parse error, clear and reset
+      localStorage.removeItem("cookie-consent");
       setShowBanner(true);
-    } else {
-      setShowMinimized(true);
-      setPreferences(JSON.parse(consent));
     }
   }, []);
 
