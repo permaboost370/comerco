@@ -64,11 +64,11 @@ export default function Header() {
                 >
                   <Link
                     href={link.href}
-                    className="group relative flex items-center gap-1.5 rounded-full border border-white/40 bg-white/30 px-5 py-2.5 text-[14px] font-semibold tracking-wide text-foreground/80 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/25"
+                    className="group relative flex items-center gap-1.5 px-4 py-2.5 text-[14px] font-semibold tracking-wide text-foreground/80 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gradient-to-r hover:from-primary hover:to-emerald-500 hover:bg-clip-text hover:text-transparent"
                   >
                     {link.name}
                     <ChevronDown
-                      className={`h-3.5 w-3.5 text-foreground/50 transition-all duration-300 group-hover:text-white ${
+                      className={`h-3.5 w-3.5 text-foreground/50 transition-all duration-300 group-hover:text-primary ${
                         isMegaMenuOpen ? "rotate-180" : ""
                       }`}
                     />
@@ -125,7 +125,7 @@ export default function Header() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="rounded-full border border-white/40 bg-white/30 px-5 py-2.5 text-[14px] font-semibold tracking-wide text-foreground/80 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/25"
+                  className="px-4 py-2.5 text-[14px] font-semibold tracking-wide text-foreground/80 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gradient-to-r hover:from-primary hover:to-emerald-500 hover:bg-clip-text hover:text-transparent"
                 >
                   {link.name}
                 </Link>
