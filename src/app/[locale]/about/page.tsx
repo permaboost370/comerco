@@ -70,10 +70,6 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
             className="mx-auto max-w-3xl text-center"
           >
-            {/* Comerco C Logo */}
-            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary shadow-lg shadow-primary/25">
-              <span className="text-4xl font-bold text-white" style={{ fontFamily: 'Outfit, sans-serif' }}>C</span>
-            </div>
             <h1 className="mb-4 text-4xl font-bold text-foreground lg:text-5xl">{t("title")}</h1>
             <p className="text-lg text-muted-foreground">
               {t("subtitle")}
@@ -291,7 +287,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: TrendingUp, value: "12+", label: th("yearsInGreece") },
+              { icon: TrendingUp, value: "14+", label: th("yearsInGreece") },
               { icon: Users, value: "1000+", label: th("partnerFarmers") },
               { icon: Globe, value: "13", label: t("regionsCoverage") },
               { icon: Microscope, value: "50+", label: t("biotechProducts") },
