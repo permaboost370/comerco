@@ -4,7 +4,8 @@ import { locales, defaultLocale } from './i18n/config';
 export default createMiddleware({
   locales,
   defaultLocale,
-  localePrefix: 'as-needed' // Only show locale prefix for non-default locale
+  localePrefix: 'as-needed', // Only show locale prefix for non-default locale
+  localeDetection: false // Don't auto-detect browser language, always default to Greek
 });
 
 export const config = {
