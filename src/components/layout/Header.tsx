@@ -47,9 +47,9 @@ export default function Header() {
             <Image
               src="/images/logo.png"
               alt="Comerco Agrotechnology"
-              width={240}
-              height={56}
-              className="h-12 w-auto lg:h-14"
+              width={180}
+              height={42}
+              className="h-9 w-auto lg:h-10"
               priority
             />
           </Link>
@@ -172,9 +172,9 @@ export default function Header() {
                   <Image
                     src="/images/logo.png"
                     alt="Comerco Agrotechnology"
-                    width={180}
-                    height={40}
-                    className="h-10 w-auto"
+                    width={140}
+                    height={32}
+                    className="h-8 w-auto"
                   />
                 </Link>
 
