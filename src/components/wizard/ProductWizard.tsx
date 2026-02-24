@@ -4,7 +4,7 @@ import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
-import { X, ChevronLeft, ChevronRight, Leaf, FlaskConical, Sprout, User, BookOpen, ArrowRight, Beaker } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Leaf, FlaskConical, Sprout, BookOpen, Beaker, Tractor, Microscope } from "lucide-react";
 import {
   wizardCropCategories,
   type WizardCropCategory,
@@ -75,18 +75,18 @@ function getProgress(
 
 function SelectionCard({
   emoji,
+  customVisual,
   title,
   subtitle,
   onClick,
   selected,
-  icon,
 }: {
   emoji?: string;
+  customVisual?: React.ReactNode;
   title: string;
   subtitle?: string;
   onClick: () => void;
   selected?: boolean;
-  icon?: React.ReactNode;
 }) {
   return (
     <button
@@ -104,8 +104,7 @@ function SelectionCard({
           </svg>
         </div>
       )}
-      <div className="text-3xl leading-none">{emoji}</div>
-      {icon && <div className="text-[#1B4D3E]">{icon}</div>}
+      {customVisual ?? <div className="text-3xl leading-none">{emoji}</div>}
       <div className={`font-semibold text-sm leading-tight transition-colors ${selected ? "text-[#1B4D3E]" : "text-gray-800 group-hover:text-[#1B4D3E]"}`}>
         {title}
       </div>
@@ -118,12 +117,10 @@ function SelectionCard({
 
 function ProductCard({
   product,
-  isFarmer,
   locale,
   categoryId,
 }: {
   product: Product;
-  isFarmer: boolean;
   locale: string;
   categoryId: string;
 }) {
@@ -133,9 +130,12 @@ function ProductCard({
   const description = isEn ? product.descriptionEn : product.description;
 
   return (
-    <div className="flex flex-col gap-2 rounded-xl border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md transition-shadow">
+    <button
+      onClick={() => router.push(`/${locale}/products/${categoryId}/${product.id}`)}
+      className="group flex flex-col gap-2 rounded-xl border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md hover:border-[#1B4D3E]/40 transition-all text-left cursor-pointer w-full"
+    >
       <div className="flex items-start justify-between gap-2">
-        <h4 className="font-bold text-[#1B4D3E] text-sm leading-tight">{name}</h4>
+        <h4 className="font-bold text-[#1B4D3E] text-sm leading-tight group-hover:underline">{name}</h4>
         {product.isBio && (
           <span className="shrink-0 flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700 border border-emerald-200">
             <Leaf className="w-2.5 h-2.5" />
@@ -144,16 +144,7 @@ function ProductCard({
         )}
       </div>
       <p className="text-xs text-gray-600 leading-relaxed flex-1">{description}</p>
-      {!isFarmer && (
-        <button
-          onClick={() => router.push(`/${locale}/products/${categoryId}/${product.id}`)}
-          className="mt-1 flex items-center gap-1 text-xs font-medium text-[#1B4D3E] hover:underline"
-        >
-          {isEn ? "View details" : "Δείτε λεπτομέρειες"}
-          <ArrowRight className="w-3 h-3" />
-        </button>
-      )}
-    </div>
+    </button>
   );
 }
 
@@ -346,7 +337,11 @@ export default function ProductWizard({ isOpen, onClose }: ProductWizardProps) {
                   <h3 className="text-xl font-bold text-gray-900">{t.whoAreYou}</h3>
                   <div className="grid grid-cols-2 gap-4">
                     <SelectionCard
-                      emoji="👨‍🌾"
+                      customVisual={
+                        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-green-100">
+                          <Tractor className="w-8 h-8 text-green-700" strokeWidth={1.5} />
+                        </div>
+                      }
                       title={t.farmer}
                       subtitle={t.farmerSub}
                       selected={userType === "farmer"}
@@ -356,7 +351,11 @@ export default function ProductWizard({ isOpen, onClose }: ProductWizardProps) {
                       }}
                     />
                     <SelectionCard
-                      emoji="🔬"
+                      customVisual={
+                        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-100">
+                          <Microscope className="w-8 h-8 text-teal-700" strokeWidth={1.5} />
+                        </div>
+                      }
                       title={t.agronomist}
                       subtitle={t.agronomistSub}
                       selected={userType === "agronomist"}
@@ -508,7 +507,6 @@ export default function ProductWizard({ isOpen, onClose }: ProductWizardProps) {
                         <ProductCard
                           key={product.id}
                           product={product}
-                          isFarmer={userType === "farmer"}
                           locale={locale}
                           categoryId={categoryId}
                         />
@@ -598,7 +596,6 @@ export default function ProductWizard({ isOpen, onClose }: ProductWizardProps) {
                       <ProductCard
                         key={product.id}
                         product={product}
-                        isFarmer={false}
                         locale={locale}
                         categoryId={selectedProductCategory.id}
                       />
