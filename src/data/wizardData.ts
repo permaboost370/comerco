@@ -26,6 +26,7 @@ export interface WizardCropCategory {
   descriptionEn: string;
   emoji: string;
   color: string;
+  image: string;
   crops: WizardCrop[];
   phases: WizardPhase[];
 }
@@ -471,6 +472,7 @@ export const wizardCropCategories: WizardCropCategory[] = [
     descriptionEn: "Tomato, cucumber, pepper and all vegetables",
     emoji: "🥦",
     color: "from-green-500 to-emerald-600",
+    image: "vegetables.jpg",
     phases: VEGETABLE_PHASES,
     crops: [
       { id: "tomato", name: "Ντομάτα", nameEn: "Tomato", emoji: "🍅" },
@@ -498,6 +500,7 @@ export const wizardCropCategories: WizardCropCategory[] = [
     descriptionEn: "Olives, citrus, vineyard and fruit trees",
     emoji: "🍇",
     color: "from-purple-500 to-violet-600",
+    image: "vineyard.jpg",
     phases: FRUIT_TREE_PHASES,
     crops: [
       { id: "olive", name: "Ελιές", nameEn: "Olives", emoji: "🫒" },
@@ -523,6 +526,7 @@ export const wizardCropCategories: WizardCropCategory[] = [
     descriptionEn: "Wheat, corn, cotton and other extensive crops",
     emoji: "🌾",
     color: "from-yellow-500 to-amber-600",
+    image: "wheat-field.jpg",
     phases: EXTENSIVE_PHASES,
     crops: [
       { id: "wheat", name: "Σιτάρι", nameEn: "Wheat", emoji: "🌾" },
@@ -543,6 +547,7 @@ export const wizardCropCategories: WizardCropCategory[] = [
     descriptionEn: "Flowers, indoor and outdoor ornamental plants",
     emoji: "🌸",
     color: "from-pink-500 to-rose-600",
+    image: "ornamentals.jpg",
     phases: ORNAMENTAL_PHASES,
     crops: [
       { id: "indoor-plants", name: "Φυτά Εσωτερικού Χώρου", nameEn: "Indoor Plants", emoji: "🪴" },
@@ -560,6 +565,7 @@ export const wizardCropCategories: WizardCropCategory[] = [
     descriptionEn: "Turf, urban trees and green spaces",
     emoji: "🌳",
     color: "from-teal-500 to-cyan-600",
+    image: "urban-green.jpg",
     phases: URBAN_GREEN_PHASES,
     crops: [
       { id: "turf", name: "Χλοοτάπητας", nameEn: "Turf / Lawn", emoji: "🌱" },
