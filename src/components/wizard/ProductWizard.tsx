@@ -459,20 +459,42 @@ export default function ProductWizard({ isOpen, onClose }: ProductWizardProps) {
               {view === "specific-crop" && selectedCategory && (
                 <div className="space-y-5">
                   <h3 className="text-xl font-bold text-gray-900">{t.selectCrop}</h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                    {selectedCategory.crops.map((crop) => (
-                      <SelectionCard
-                        key={crop.id}
-                        emoji={crop.emoji}
-                        title={isEn ? crop.nameEn : crop.name}
-                        selected={selectedCrop?.id === crop.id}
-                        onClick={() => {
-                          setSelectedCrop(crop);
-                          setSelectedPhase(null);
-                          go("phase");
-                        }}
-                      />
-                    ))}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    {selectedCategory.crops.map((crop) => {
+                      const isSelected = selectedCrop?.id === crop.id;
+                      return (
+                        <button
+                          key={crop.id}
+                          onClick={() => {
+                            setSelectedCrop(crop);
+                            setSelectedPhase(null);
+                            go("phase");
+                          }}
+                          className={`flex flex-col items-center gap-2.5 p-3 rounded-2xl transition-all duration-200 cursor-pointer active:scale-95
+                            ${isSelected ? "bg-[#1B4D3E]/8" : "hover:bg-gray-50"}`}
+                        >
+                          <div className={`relative w-20 h-20 rounded-full overflow-hidden ring-2 transition-all duration-200 shadow-sm
+                            ${isSelected
+                              ? "ring-[#1B4D3E] ring-offset-2 shadow-md"
+                              : "ring-gray-200 hover:ring-[#1B4D3E]/50"
+                            }`}
+                          >
+                            <Image
+                              src={`/images/crops/${crop.id}.jpg`}
+                              alt={isEn ? crop.nameEn : crop.name}
+                              fill
+                              className="object-cover"
+                              sizes="80px"
+                            />
+                          </div>
+                          <span className={`font-semibold text-xs text-center leading-tight transition-colors
+                            ${isSelected ? "text-[#1B4D3E]" : "text-gray-800"}`}
+                          >
+                            {isEn ? crop.nameEn : crop.name}
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               )}
