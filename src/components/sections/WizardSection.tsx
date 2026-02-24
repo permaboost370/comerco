@@ -111,12 +111,6 @@ export default function WizardSection() {
                 </button>
               </div>
 
-              {/* Trust note */}
-              <p className="text-emerald-300/60 text-xs">
-                {isEn
-                  ? "Over 50 products • All crops • Free guidance"
-                  : "Πάνω από 50 προϊόντα • Όλες οι καλλιέργειες • Χωρίς κόστος"}
-              </p>
             </motion.div>
 
             {/* Right: Animated crop grid */}
