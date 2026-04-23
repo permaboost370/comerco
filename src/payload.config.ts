@@ -13,6 +13,7 @@ import { Products } from './collections/Products'
 import { Distributors } from './collections/Distributors'
 import { WizardCropCategories } from './collections/WizardCropCategories'
 import { ALL_COPY_GLOBALS } from './globals/SiteCopy'
+import { HomePage } from './globals/HomePage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -29,7 +30,7 @@ export default buildConfig({
     Distributors,
     WizardCropCategories,
   ],
-  globals: [...ALL_COPY_GLOBALS],
+  globals: [HomePage, ...ALL_COPY_GLOBALS],
   localization: {
     locales: [
       { code: 'el', label: 'Ελληνικά' },

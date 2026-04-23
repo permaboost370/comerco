@@ -1,26 +1,26 @@
 import { getProductCategories } from "@/lib/products";
 import { getWizardCategories } from "@/lib/wizard";
-import Hero from "@/components/sections/Hero";
-import Features from "@/components/sections/Features";
-import ImageShowcase from "@/components/sections/ImageShowcase";
-import ProductsOverview from "@/components/sections/ProductsOverview";
-import FullWidthImage from "@/components/sections/FullWidthImage";
-import WizardSection from "@/components/sections/WizardSection";
+import { getHomePageSections } from "@/lib/home-page";
+import SectionRenderer from "@/components/sections/SectionRenderer";
 
-export default async function Home() {
-  const [categories, wizardCategories] = await Promise.all([
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
+  const [sections, categories, wizardCategories] = await Promise.all([
+    getHomePageSections(locale as "el" | "en"),
     getProductCategories(),
     getWizardCategories(),
   ]);
 
   return (
-    <>
-      <Hero />
-      <WizardSection categories={categories} wizardCategories={wizardCategories} />
-      <Features />
-      <ImageShowcase />
-      <ProductsOverview categories={categories} />
-      <FullWidthImage />
-    </>
+    <SectionRenderer
+      sections={sections}
+      categories={categories}
+      wizardCategories={wizardCategories}
+    />
   );
 }

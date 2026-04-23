@@ -96,6 +96,7 @@ export interface Config {
   };
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('el' | 'en') | ('el' | 'en')[];
   globals: {
+    'home-page': HomePage;
     'nav-copy': NavCopy;
     'home-copy': HomeCopy;
     'about-copy': AboutCopy;
@@ -106,6 +107,7 @@ export interface Config {
     'cookies-copy': CookiesCopy;
   };
   globalsSelect: {
+    'home-page': HomePageSelect<false> | HomePageSelect<true>;
     'nav-copy': NavCopySelect<false> | NavCopySelect<true>;
     'home-copy': HomeCopySelect<false> | HomeCopySelect<true>;
     'about-copy': AboutCopySelect<false> | AboutCopySelect<true>;
@@ -616,6 +618,155 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
+ * The homepage layout. Add, remove, or reorder sections.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-page".
+ */
+export interface HomePage {
+  id: number;
+  /**
+   * The sections shown on the homepage, from top to bottom.
+   */
+  sections: (
+    | {
+        title: string;
+        /**
+         * Colored part of the title.
+         */
+        titleHighlight?: string | null;
+        description?: string | null;
+        image: number | Media;
+        primaryCta: {
+          label: string;
+          /**
+           * e.g. /products
+           */
+          href: string;
+        };
+        secondaryCta?: {
+          label?: string | null;
+          href?: string | null;
+        };
+        stats?:
+          | {
+              /**
+               * e.g. "14+"
+               */
+              value: string;
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'hero';
+      }
+    | {
+        title: string;
+        /**
+         * Mixed text + bold highlight pairs.
+         */
+        paragraphs?:
+          | {
+              before?: string | null;
+              /**
+               * Bold emphasis
+               */
+              highlight?: string | null;
+              after?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        resultsTitle?: string | null;
+        results?:
+          | {
+              icon: 'Sprout' | 'Leaf' | 'TreeDeciduous' | 'FlaskConical' | 'Droplets' | 'Sparkles';
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        futureVision?: string | null;
+        sustainableFuture?: string | null;
+        futureVisionEnd?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'mission';
+      }
+    | {
+        title: string;
+        subtitle?: string | null;
+        tagline?: string | null;
+        images?:
+          | {
+              image: number | Media;
+              caption?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'imageShowcase';
+      }
+    | {
+        image: number | Media;
+        /**
+         * Alt text for accessibility.
+         */
+        alt?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'fullWidthImage';
+      }
+    | {
+        /**
+         * Small badge above title (e.g. "Product Finder").
+         */
+        badge?: string | null;
+        title: string;
+        titleHighlight?: string | null;
+        description?: string | null;
+        ctaLabel: string;
+        /**
+         * Numbered step labels shown next to the CTA.
+         */
+        steps?:
+          | {
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        /**
+         * Decorative crop tiles (emoji + label). Desktop only.
+         */
+        cropPreview?:
+          | {
+              emoji: string;
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        /**
+         * e.g. "+ many more crops →"
+         */
+        moreLabel?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'wizard';
+      }
+    | {
+        title: string;
+        subtitle?: string | null;
+        viewAllLabel?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'productsOverview';
+      }
+  )[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * Top-nav labels, footer headings, and shared UI strings used across every page.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -892,6 +1043,132 @@ export interface CookiesCopy {
   };
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-page_select".
+ */
+export interface HomePageSelect<T extends boolean = true> {
+  sections?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              title?: T;
+              titleHighlight?: T;
+              description?: T;
+              image?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mission?:
+          | T
+          | {
+              title?: T;
+              paragraphs?:
+                | T
+                | {
+                    before?: T;
+                    highlight?: T;
+                    after?: T;
+                    id?: T;
+                  };
+              resultsTitle?: T;
+              results?:
+                | T
+                | {
+                    icon?: T;
+                    text?: T;
+                    id?: T;
+                  };
+              futureVision?: T;
+              sustainableFuture?: T;
+              futureVisionEnd?: T;
+              id?: T;
+              blockName?: T;
+            };
+        imageShowcase?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              tagline?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        fullWidthImage?:
+          | T
+          | {
+              image?: T;
+              alt?: T;
+              id?: T;
+              blockName?: T;
+            };
+        wizard?:
+          | T
+          | {
+              badge?: T;
+              title?: T;
+              titleHighlight?: T;
+              description?: T;
+              ctaLabel?: T;
+              steps?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              cropPreview?:
+                | T
+                | {
+                    emoji?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              moreLabel?: T;
+              id?: T;
+              blockName?: T;
+            };
+        productsOverview?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              viewAllLabel?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

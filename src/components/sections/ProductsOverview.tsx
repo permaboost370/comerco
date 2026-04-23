@@ -1,11 +1,12 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
-import { useTranslations, useLocale } from "next-intl";
+import { useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowRight, Leaf, FlaskConical, Boxes, Droplets, Sprout, Pipette, TreeDeciduous } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { ProductCategory } from "@/lib/products";
+import type { ProductsOverviewBlockData } from "@/lib/home-page-types";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Leaf,
@@ -21,28 +22,24 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.1 },
   },
 };
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
 export default function ProductsOverview({
+  data,
   categories,
 }: {
+  data: ProductsOverviewBlockData;
   categories: ProductCategory[];
 }) {
-  const t = useTranslations("products");
   const locale = useLocale();
+  const { title = "", subtitle = "", viewAllLabel = "" } = data;
 
   return (
     <section className="py-16 lg:py-24">
@@ -55,19 +52,25 @@ export default function ProductsOverview({
           className="mb-12 flex flex-col items-start justify-between gap-4 lg:mb-16 lg:flex-row lg:items-end"
         >
           <div>
-            <h2 className="mb-4 text-3xl font-bold text-foreground lg:text-4xl">
-              {t("ourCategories")}
-            </h2>
-            <p className="max-w-2xl text-lg text-muted-foreground">
-              {t("categoriesDesc")}
-            </p>
+            {title ? (
+              <h2 className="mb-4 text-3xl font-bold text-foreground lg:text-4xl">{title}</h2>
+            ) : null}
+            {subtitle ? (
+              <p className="max-w-2xl text-lg text-muted-foreground">{subtitle}</p>
+            ) : null}
           </div>
-          <Button asChild variant="outline" className="gap-2 rounded-full border-2 px-6 transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary hover:shadow-lg hover:shadow-primary/25">
-            <Link href="/products">
-              {t("viewAllProducts")}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Button>
+          {viewAllLabel ? (
+            <Button
+              asChild
+              variant="outline"
+              className="gap-2 rounded-full border-2 px-6 transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary hover:shadow-lg hover:shadow-primary/25"
+            >
+              <Link href="/products">
+                {viewAllLabel}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          ) : null}
         </motion.div>
 
         <motion.div
