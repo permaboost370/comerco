@@ -95,8 +95,26 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('el' | 'en') | ('el' | 'en')[];
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'nav-copy': NavCopy;
+    'home-copy': HomeCopy;
+    'about-copy': AboutCopy;
+    'products-copy': ProductsCopy;
+    'distributors-copy': DistributorsCopy;
+    'contact-copy': ContactCopy;
+    'animal-feed-copy': AnimalFeedCopy;
+    'cookies-copy': CookiesCopy;
+  };
+  globalsSelect: {
+    'nav-copy': NavCopySelect<false> | NavCopySelect<true>;
+    'home-copy': HomeCopySelect<false> | HomeCopySelect<true>;
+    'about-copy': AboutCopySelect<false> | AboutCopySelect<true>;
+    'products-copy': ProductsCopySelect<false> | ProductsCopySelect<true>;
+    'distributors-copy': DistributorsCopySelect<false> | DistributorsCopySelect<true>;
+    'contact-copy': ContactCopySelect<false> | ContactCopySelect<true>;
+    'animal-feed-copy': AnimalFeedCopySelect<false> | AnimalFeedCopySelect<true>;
+    'cookies-copy': CookiesCopySelect<false> | CookiesCopySelect<true>;
+  };
   locale: 'el' | 'en';
   widgets: {
     collections: CollectionsWidget;
@@ -591,6 +609,572 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * Top-nav labels, footer headings, and shared UI strings used across every page.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav-copy".
+ */
+export interface NavCopy {
+  id: number;
+  common?: {
+    home?: string | null;
+    products?: string | null;
+    about?: string | null;
+    distributors?: string | null;
+    animalFeed?: string | null;
+    contact?: string | null;
+    privacyPolicy?: string | null;
+    viewAll?: string | null;
+    learnMore?: string | null;
+    callUs?: string | null;
+    emailUs?: string | null;
+    followUs?: string | null;
+    allRightsReserved?: string | null;
+  };
+  header?: {
+    ourProducts?: string | null;
+    viewAllProducts?: string | null;
+  };
+  footer?: {
+    description?: string | null;
+    products?: string | null;
+    company?: string | null;
+    aboutUs?: string | null;
+    partners?: string | null;
+    followUs?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Content that appears on the homepage.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-copy".
+ */
+export interface HomeCopy {
+  id: number;
+  hero?: {
+    title?: string | null;
+    titleHighlight?: string | null;
+    description?: string | null;
+    viewProducts?: string | null;
+    yearsInGreece?: string | null;
+    partnerFarmers?: string | null;
+    greeceCoverage?: string | null;
+  };
+  mission?: {
+    title?: string | null;
+    description1?: string | null;
+    highlight1?: string | null;
+    description2?: string | null;
+    description3?: string | null;
+    highlight2?: string | null;
+    description4?: string | null;
+    resultsTitle?: string | null;
+    result1?: string | null;
+    result2?: string | null;
+    result3?: string | null;
+    futureVision?: string | null;
+    sustainableFuture?: string | null;
+    futureVisionEnd?: string | null;
+  };
+  stats?: {
+    title?: string | null;
+    years?: string | null;
+    farmers?: string | null;
+    regions?: string | null;
+    products?: string | null;
+  };
+  showcase?: {
+    title?: string | null;
+    subtitle?: string | null;
+    tagline?: string | null;
+    showcase1?: string | null;
+    showcase2?: string | null;
+    showcase3?: string | null;
+    showcase4?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Content on the /about page.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-copy".
+ */
+export interface AboutCopy {
+  id: number;
+  about?: {
+    title?: string | null;
+    subtitle?: string | null;
+    ourStory?: string | null;
+    storyP1?: string | null;
+    storyP2?: string | null;
+    storyP3?: string | null;
+    microsporeTitle?: string | null;
+    microsporeP1?: string | null;
+    microsporeP2?: string | null;
+    ourMission?: string | null;
+    missionP1?: string | null;
+    missionP2?: string | null;
+    missionP3?: string | null;
+    rdTitle?: string | null;
+    rdP1?: string | null;
+    rdP2?: string | null;
+    ourCommitment?: string | null;
+    commitmentP1?: string | null;
+    commitmentP2?: string | null;
+    ourValues?: string | null;
+    valuesSubtitle?: string | null;
+    responsibility?: string | null;
+    responsibilityDesc?: string | null;
+    integrity?: string | null;
+    integrityDesc?: string | null;
+    sustainability?: string | null;
+    sustainabilityDesc?: string | null;
+    innovation?: string | null;
+    innovationDesc?: string | null;
+    ourJourney?: string | null;
+    journeySubtitle?: string | null;
+    founding?: string | null;
+    foundingDesc?: string | null;
+    expansion?: string | null;
+    expansionDesc?: string | null;
+    innovationMilestone?: string | null;
+    innovationMilestoneDesc?: string | null;
+    growth?: string | null;
+    growthDesc?: string | null;
+    rebranding?: string | null;
+    rebrandingDesc?: string | null;
+    today?: string | null;
+    todayDesc?: string | null;
+    regionsCoverage?: string | null;
+    biotechProducts?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Copy for the /products listing and category pages.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products-copy".
+ */
+export interface ProductsCopy {
+  id: number;
+  products?: {
+    title?: string | null;
+    subtitle?: string | null;
+    viewCategory?: string | null;
+    viewProduct?: string | null;
+    allProducts?: string | null;
+    categories?: string | null;
+    notFoundTitle?: string | null;
+    notFoundDesc?: string | null;
+    contactUs?: string | null;
+    ourCategories?: string | null;
+    categoriesDesc?: string | null;
+    viewAllProducts?: string | null;
+    backToProducts?: string | null;
+    productCatalog?: string | null;
+    catalogComingSoon?: string | null;
+    requestPriceList?: string | null;
+    call?: string | null;
+    otherCategories?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Copy for the /distributors page.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "distributors-copy".
+ */
+export interface DistributorsCopy {
+  id: number;
+  distributors?: {
+    title?: string | null;
+    subtitle?: string | null;
+    findDistributor?: string | null;
+    region?: string | null;
+    phone?: string | null;
+    mapTitle?: string | null;
+    contact?: string | null;
+    callComerco?: string | null;
+    selectRegion?: string | null;
+    selectRegionDesc?: string | null;
+    allPartners?: string | null;
+    teamCoversGreece?: string | null;
+    notFoundTitle?: string | null;
+    notFoundDesc?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Copy for the /contact page.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-copy".
+ */
+export interface ContactCopy {
+  id: number;
+  contact?: {
+    title?: string | null;
+    subtitle?: string | null;
+    phone?: string | null;
+    email?: string | null;
+    address?: string | null;
+    businessHours?: string | null;
+    weekdays?: string | null;
+    weekends?: string | null;
+    ourLocation?: string | null;
+    openInMaps?: string | null;
+    followUs?: string | null;
+    followUsDesc?: string | null;
+    needHelp?: string | null;
+    needHelpDesc?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Copy for the /animal-feed page.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "animal-feed-copy".
+ */
+export interface AnimalFeedCopy {
+  id: number;
+  animalFeed?: {
+    title?: string | null;
+    subtitle?: string | null;
+    downloadCatalogue?: string | null;
+    ourProducts?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Cookie consent banner and settings dialog.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cookies-copy".
+ */
+export interface CookiesCopy {
+  id: number;
+  cookies?: {
+    title?: string | null;
+    description?: string | null;
+    readPrivacy?: string | null;
+    forMoreInfo?: string | null;
+    acceptAll?: string | null;
+    acceptNecessary?: string | null;
+    settings?: string | null;
+    cookieSettings?: string | null;
+    necessaryCookies?: string | null;
+    necessaryDesc?: string | null;
+    analyticsCookies?: string | null;
+    analyticsDesc?: string | null;
+    marketingCookies?: string | null;
+    marketingDesc?: string | null;
+    savePreferences?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav-copy_select".
+ */
+export interface NavCopySelect<T extends boolean = true> {
+  common?:
+    | T
+    | {
+        home?: T;
+        products?: T;
+        about?: T;
+        distributors?: T;
+        animalFeed?: T;
+        contact?: T;
+        privacyPolicy?: T;
+        viewAll?: T;
+        learnMore?: T;
+        callUs?: T;
+        emailUs?: T;
+        followUs?: T;
+        allRightsReserved?: T;
+      };
+  header?:
+    | T
+    | {
+        ourProducts?: T;
+        viewAllProducts?: T;
+      };
+  footer?:
+    | T
+    | {
+        description?: T;
+        products?: T;
+        company?: T;
+        aboutUs?: T;
+        partners?: T;
+        followUs?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-copy_select".
+ */
+export interface HomeCopySelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        titleHighlight?: T;
+        description?: T;
+        viewProducts?: T;
+        yearsInGreece?: T;
+        partnerFarmers?: T;
+        greeceCoverage?: T;
+      };
+  mission?:
+    | T
+    | {
+        title?: T;
+        description1?: T;
+        highlight1?: T;
+        description2?: T;
+        description3?: T;
+        highlight2?: T;
+        description4?: T;
+        resultsTitle?: T;
+        result1?: T;
+        result2?: T;
+        result3?: T;
+        futureVision?: T;
+        sustainableFuture?: T;
+        futureVisionEnd?: T;
+      };
+  stats?:
+    | T
+    | {
+        title?: T;
+        years?: T;
+        farmers?: T;
+        regions?: T;
+        products?: T;
+      };
+  showcase?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        tagline?: T;
+        showcase1?: T;
+        showcase2?: T;
+        showcase3?: T;
+        showcase4?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-copy_select".
+ */
+export interface AboutCopySelect<T extends boolean = true> {
+  about?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        ourStory?: T;
+        storyP1?: T;
+        storyP2?: T;
+        storyP3?: T;
+        microsporeTitle?: T;
+        microsporeP1?: T;
+        microsporeP2?: T;
+        ourMission?: T;
+        missionP1?: T;
+        missionP2?: T;
+        missionP3?: T;
+        rdTitle?: T;
+        rdP1?: T;
+        rdP2?: T;
+        ourCommitment?: T;
+        commitmentP1?: T;
+        commitmentP2?: T;
+        ourValues?: T;
+        valuesSubtitle?: T;
+        responsibility?: T;
+        responsibilityDesc?: T;
+        integrity?: T;
+        integrityDesc?: T;
+        sustainability?: T;
+        sustainabilityDesc?: T;
+        innovation?: T;
+        innovationDesc?: T;
+        ourJourney?: T;
+        journeySubtitle?: T;
+        founding?: T;
+        foundingDesc?: T;
+        expansion?: T;
+        expansionDesc?: T;
+        innovationMilestone?: T;
+        innovationMilestoneDesc?: T;
+        growth?: T;
+        growthDesc?: T;
+        rebranding?: T;
+        rebrandingDesc?: T;
+        today?: T;
+        todayDesc?: T;
+        regionsCoverage?: T;
+        biotechProducts?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products-copy_select".
+ */
+export interface ProductsCopySelect<T extends boolean = true> {
+  products?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        viewCategory?: T;
+        viewProduct?: T;
+        allProducts?: T;
+        categories?: T;
+        notFoundTitle?: T;
+        notFoundDesc?: T;
+        contactUs?: T;
+        ourCategories?: T;
+        categoriesDesc?: T;
+        viewAllProducts?: T;
+        backToProducts?: T;
+        productCatalog?: T;
+        catalogComingSoon?: T;
+        requestPriceList?: T;
+        call?: T;
+        otherCategories?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "distributors-copy_select".
+ */
+export interface DistributorsCopySelect<T extends boolean = true> {
+  distributors?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        findDistributor?: T;
+        region?: T;
+        phone?: T;
+        mapTitle?: T;
+        contact?: T;
+        callComerco?: T;
+        selectRegion?: T;
+        selectRegionDesc?: T;
+        allPartners?: T;
+        teamCoversGreece?: T;
+        notFoundTitle?: T;
+        notFoundDesc?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-copy_select".
+ */
+export interface ContactCopySelect<T extends boolean = true> {
+  contact?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        phone?: T;
+        email?: T;
+        address?: T;
+        businessHours?: T;
+        weekdays?: T;
+        weekends?: T;
+        ourLocation?: T;
+        openInMaps?: T;
+        followUs?: T;
+        followUsDesc?: T;
+        needHelp?: T;
+        needHelpDesc?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "animal-feed-copy_select".
+ */
+export interface AnimalFeedCopySelect<T extends boolean = true> {
+  animalFeed?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        downloadCatalogue?: T;
+        ourProducts?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cookies-copy_select".
+ */
+export interface CookiesCopySelect<T extends boolean = true> {
+  cookies?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        readPrivacy?: T;
+        forMoreInfo?: T;
+        acceptAll?: T;
+        acceptNecessary?: T;
+        settings?: T;
+        cookieSettings?: T;
+        necessaryCookies?: T;
+        necessaryDesc?: T;
+        analyticsCookies?: T;
+        analyticsDesc?: T;
+        marketingCookies?: T;
+        marketingDesc?: T;
+        savePreferences?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
