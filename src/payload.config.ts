@@ -1,0 +1,58 @@
+import path from 'path'
+import { fileURLToPath } from 'url'
+import { buildConfig } from 'payload'
+import { postgresAdapter } from '@payloadcms/db-postgres'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import sharp from 'sharp'
+
+import { Media } from './collections/Media.js'
+import { ProductCategories } from './collections/ProductCategories.js'
+import { Products } from './collections/Products.js'
+
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
+
+export default buildConfig({
+  admin: {
+    user: 'users',
+  },
+  collections: [
+    {
+      slug: 'users',
+      auth: true,
+      admin: { useAsTitle: 'email' },
+      fields: [],
+    },
+    Media,
+    ProductCategories,
+    Products,
+  ],
+  localization: {
+    locales: [
+      { code: 'el', label: 'Ελληνικά' },
+      { code: 'en', label: 'English' },
+    ],
+    defaultLocale: 'el',
+    fallback: true,
+  },
+  editor: lexicalEditor(),
+  secret: process.env.PAYLOAD_SECRET || '',
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL || '',
+    },
+  }),
+  sharp,
+  typescript: {
+    outputFile: path.resolve(dirname, 'payload-types.ts'),
+  },
+  plugins: [
+    vercelBlobStorage({
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),
+  ],
+})
