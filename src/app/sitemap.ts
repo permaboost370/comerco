@@ -1,6 +1,10 @@
 import { MetadataRoute } from "next";
 import { getProductCategories } from "@/lib/products";
 
+// Always compute from live Payload data; avoids prerender-time DB queries
+// that can trip Neon's pooler "message too large" limit on localized joins.
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://comerco.gr";
   const currentDate = new Date().toISOString();
