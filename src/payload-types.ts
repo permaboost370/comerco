@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     'product-categories': ProductCategory;
     products: Product;
+    distributors: Distributor;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     'product-categories': ProductCategoriesSelect<false> | ProductCategoriesSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
+    distributors: DistributorsSelect<false> | DistributorsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -212,6 +214,63 @@ export interface Product {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "distributors".
+ */
+export interface Distributor {
+  id: number;
+  /**
+   * URL-friendly identifier (e.g. "attica-sterea-evia"). Do not change after creation.
+   */
+  slug: string;
+  region: string;
+  areas?: string | null;
+  /**
+   * Greek administrative regions this distributor covers (used to highlight the map).
+   */
+  regionIds: (
+    | 'east-macedonia-thrace'
+    | 'central-macedonia'
+    | 'west-macedonia'
+    | 'epirus'
+    | 'thessaly'
+    | 'ionian-islands'
+    | 'west-greece'
+    | 'central-greece'
+    | 'attica'
+    | 'peloponnese'
+    | 'north-aegean'
+    | 'south-aegean'
+    | 'crete'
+  )[];
+  /**
+   * Optional company name if different from the distributor contact.
+   */
+  company?: string | null;
+  contacts?:
+    | {
+        name: string;
+        phone?: string | null;
+        role?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Map pin latitude (e.g. 37.9838).
+   */
+  latitude: number;
+  /**
+   * Map pin longitude (e.g. 23.7275).
+   */
+  longitude: number;
+  /**
+   * Display order (lower = first).
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -249,6 +308,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'products';
         value: number | Product;
+      } | null)
+    | ({
+        relationTo: 'distributors';
+        value: number | Distributor;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -356,6 +419,30 @@ export interface ProductsSelect<T extends boolean = true> {
   category?: T;
   image?: T;
   isBio?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "distributors_select".
+ */
+export interface DistributorsSelect<T extends boolean = true> {
+  slug?: T;
+  region?: T;
+  areas?: T;
+  regionIds?: T;
+  company?: T;
+  contacts?:
+    | T
+    | {
+        name?: T;
+        phone?: T;
+        role?: T;
+        id?: T;
+      };
+  latitude?: T;
+  longitude?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;

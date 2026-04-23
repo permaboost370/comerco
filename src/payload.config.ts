@@ -9,6 +9,7 @@ import sharp from 'sharp'
 import { Media } from './collections/Media'
 import { ProductCategories } from './collections/ProductCategories'
 import { Products } from './collections/Products'
+import { Distributors } from './collections/Distributors'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -27,6 +28,7 @@ export default buildConfig({
     Media,
     ProductCategories,
     Products,
+    Distributors,
   ],
   localization: {
     locales: [

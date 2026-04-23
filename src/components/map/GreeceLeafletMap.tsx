@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
-import { distributors, type Distributor } from "@/data/distributors";
+import type { Distributor } from "@/lib/distributors";
 import { Phone, MapPin, Building2 } from "lucide-react";
 import "leaflet/dist/leaflet.css";
 
@@ -19,11 +19,13 @@ const customIcon = new L.Icon({
 });
 
 interface GreeceLeafletMapProps {
+  distributors: Distributor[];
   onDistributorSelect?: (distributor: Distributor) => void;
   selectedDistributorId?: string | null;
 }
 
 export default function GreeceLeafletMap({
+  distributors,
   onDistributorSelect,
   selectedDistributorId,
 }: GreeceLeafletMapProps) {
