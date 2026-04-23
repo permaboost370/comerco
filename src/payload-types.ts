@@ -72,6 +72,7 @@ export interface Config {
     'product-categories': ProductCategory;
     products: Product;
     distributors: Distributor;
+    'wizard-crop-categories': WizardCropCategory;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     'product-categories': ProductCategoriesSelect<false> | ProductCategoriesSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
     distributors: DistributorsSelect<false> | DistributorsSelect<true>;
+    'wizard-crop-categories': WizardCropCategoriesSelect<false> | WizardCropCategoriesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -270,6 +272,72 @@ export interface Distributor {
   createdAt: string;
 }
 /**
+ * Controls the Product Finder wizard on the homepage — categories, crops within each, and recommended products per growth phase.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wizard-crop-categories".
+ */
+export interface WizardCropCategory {
+  id: number;
+  /**
+   * URL-friendly identifier (e.g. "vegetables"). Do not change after creation.
+   */
+  slug: string;
+  name: string;
+  description?: string | null;
+  /**
+   * e.g. 🥦
+   */
+  emoji: string;
+  /**
+   * Filename under /public/images/crops/ (e.g. "vegetables.jpg").
+   */
+  image?: string | null;
+  /**
+   * Tailwind gradient classes (e.g. "from-green-500 to-emerald-600").
+   */
+  color?: string | null;
+  /**
+   * Display order on the wizard (lower = first).
+   */
+  order?: number | null;
+  /**
+   * Individual crops shown when "agronomist" flow picks this category.
+   */
+  crops?:
+    | {
+        /**
+         * Identifier (e.g. "tomato").
+         */
+        slug: string;
+        name: string;
+        emoji: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Growth phases shown after a user picks a crop, with recommended products per phase.
+   */
+  phases?:
+    | {
+        /**
+         * Identifier (e.g. "flowering").
+         */
+        slug: string;
+        name: string;
+        description?: string | null;
+        emoji: string;
+        /**
+         * Products recommended for this phase. Pick from the Products collection.
+         */
+        products?: (number | Product)[] | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -312,6 +380,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'distributors';
         value: number | Distributor;
+      } | null)
+    | ({
+        relationTo: 'wizard-crop-categories';
+        value: number | WizardCropCategory;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -444,6 +516,39 @@ export interface DistributorsSelect<T extends boolean = true> {
   latitude?: T;
   longitude?: T;
   order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wizard-crop-categories_select".
+ */
+export interface WizardCropCategoriesSelect<T extends boolean = true> {
+  slug?: T;
+  name?: T;
+  description?: T;
+  emoji?: T;
+  image?: T;
+  color?: T;
+  order?: T;
+  crops?:
+    | T
+    | {
+        slug?: T;
+        name?: T;
+        emoji?: T;
+        id?: T;
+      };
+  phases?:
+    | T
+    | {
+        slug?: T;
+        name?: T;
+        description?: T;
+        emoji?: T;
+        products?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

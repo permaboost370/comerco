@@ -7,13 +7,12 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight, Leaf, FlaskConical, Sprout, BookOpen, Beaker, Tractor, Microscope } from "lucide-react";
 import {
-  wizardCropCategories,
   type WizardCropCategory,
   type WizardCrop,
   type WizardPhase,
   type UserType,
   type AgronomistPath,
-} from "@/data/wizardData";
+} from "@/lib/wizard";
 import type { Product, ProductCategory } from "@/lib/products";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -155,9 +154,10 @@ interface ProductWizardProps {
   isOpen: boolean;
   onClose: () => void;
   categories: ProductCategory[];
+  wizardCategories: WizardCropCategory[];
 }
 
-export default function ProductWizard({ isOpen, onClose, categories }: ProductWizardProps) {
+export default function ProductWizard({ isOpen, onClose, categories, wizardCategories }: ProductWizardProps) {
   const locale = useLocale();
   const isEn = locale === "en";
 
@@ -416,7 +416,7 @@ export default function ProductWizard({ isOpen, onClose, categories }: ProductWi
                 <div className="space-y-5">
                   <h3 className="text-xl font-bold text-gray-900">{t.selectCropCat}</h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                    {wizardCropCategories.map((cat) => {
+                    {wizardCategories.map((cat) => {
                       const isSelected = selectedCategory?.id === cat.id;
                       return (
                         <button

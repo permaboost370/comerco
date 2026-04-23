@@ -6,6 +6,7 @@ import { useLocale } from "next-intl";
 import { Sparkles, ChevronRight } from "lucide-react";
 import ProductWizard from "@/components/wizard/ProductWizard";
 import type { ProductCategory } from "@/lib/products";
+import type { WizardCropCategory } from "@/lib/wizard";
 
 const crops = [
   { emoji: "🍅", label: "Ντομάτα" },
@@ -34,8 +35,10 @@ const stepsEn = [
 
 export default function WizardSection({
   categories,
+  wizardCategories,
 }: {
   categories: ProductCategory[];
+  wizardCategories: WizardCropCategory[];
 }) {
   const locale = useLocale();
   const isEn = locale === "en";
@@ -158,7 +161,7 @@ export default function WizardSection({
         </div>
       </section>
 
-      <ProductWizard isOpen={isOpen} onClose={() => setIsOpen(false)} categories={categories} />
+      <ProductWizard isOpen={isOpen} onClose={() => setIsOpen(false)} categories={categories} wizardCategories={wizardCategories} />
     </>
   );
 }
