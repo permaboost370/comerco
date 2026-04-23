@@ -6,6 +6,7 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import sharp from 'sharp'
 
+import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { ProductCategories } from './collections/ProductCategories'
 import { Products } from './collections/Products'
@@ -21,12 +22,7 @@ export default buildConfig({
     user: 'users',
   },
   collections: [
-    {
-      slug: 'users',
-      auth: true,
-      admin: { useAsTitle: 'email' },
-      fields: [],
-    },
+    Users,
     Media,
     ProductCategories,
     Products,
