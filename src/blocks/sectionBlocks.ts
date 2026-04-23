@@ -152,7 +152,6 @@ export const FullWidthImageBlock: Block = {
 export const WizardBlock: Block = {
   slug: 'wizard',
   labels: { singular: 'Product Wizard', plural: 'Product Wizard sections' },
-  admin: { description: 'The "Find Your Product" CTA + launcher. Crops and phases are configured in Wizard Crop Categories.' },
   fields: [
     { name: 'badge', type: 'text', localized: true, admin: { description: 'Small badge above title (e.g. "Product Finder").' } },
     { name: 'title', type: 'textarea', required: true, localized: true },
@@ -187,7 +186,6 @@ export const WizardBlock: Block = {
 export const ProductsOverviewBlock: Block = {
   slug: 'productsOverview',
   labels: { singular: 'Products Overview', plural: 'Products Overview sections' },
-  admin: { description: 'Grid of product categories. Categories themselves come from the Product Categories collection.' },
   fields: [
     { name: 'title', type: 'text', required: true, localized: true },
     { name: 'subtitle', type: 'textarea', localized: true },
