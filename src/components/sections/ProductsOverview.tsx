@@ -5,7 +5,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowRight, Leaf, FlaskConical, Boxes, Droplets, Sprout, Pipette, TreeDeciduous } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { productCategories } from "@/data/products";
+import type { ProductCategory } from "@/lib/products";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Leaf,
@@ -36,7 +36,11 @@ const itemVariants = {
   },
 };
 
-export default function ProductsOverview() {
+export default function ProductsOverview({
+  categories,
+}: {
+  categories: ProductCategory[];
+}) {
   const t = useTranslations("products");
   const locale = useLocale();
 
@@ -73,7 +77,7 @@ export default function ProductsOverview() {
           viewport={{ once: true }}
           className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
         >
-          {productCategories.map((category) => {
+          {categories.map((category) => {
             const Icon = iconMap[category.icon] || Leaf;
             return (
               <motion.div key={category.id} variants={itemVariants}>

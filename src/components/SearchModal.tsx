@@ -6,28 +6,29 @@ import { Link } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, X, Package, ArrowRight } from "lucide-react";
-import { productCategories, type Product, type ProductCategory } from "@/data/products";
+import type { ProductCategory } from "@/lib/products";
 
 interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
+  categories: ProductCategory[];
 }
 
-export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
+export default function SearchModal({ isOpen, onClose, categories }: SearchModalProps) {
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const locale = useLocale();
 
   // Get all products flattened with category info
   const allProducts = useMemo(() => {
-    return productCategories.flatMap((category) =>
+    return categories.flatMap((category) =>
       category.products.map((product) => ({
         ...product,
         categoryId: category.id,
         categoryName: locale === "en" ? category.nameEn : category.name,
       }))
     );
-  }, [locale]);
+  }, [locale, categories]);
 
   // Filter products based on search query
   const filteredProducts = useMemo(() => {

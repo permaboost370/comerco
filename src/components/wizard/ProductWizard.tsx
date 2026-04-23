@@ -14,7 +14,7 @@ import {
   type UserType,
   type AgronomistPath,
 } from "@/data/wizardData";
-import { productCategories, type Product, type ProductCategory } from "@/data/products";
+import type { Product, ProductCategory } from "@/lib/products";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -154,9 +154,10 @@ function ProductCard({
 interface ProductWizardProps {
   isOpen: boolean;
   onClose: () => void;
+  categories: ProductCategory[];
 }
 
-export default function ProductWizard({ isOpen, onClose }: ProductWizardProps) {
+export default function ProductWizard({ isOpen, onClose, categories }: ProductWizardProps) {
   const locale = useLocale();
   const isEn = locale === "en";
 
@@ -208,7 +209,7 @@ export default function ProductWizard({ isOpen, onClose }: ProductWizardProps) {
   const resultProducts: Array<{ product: Product; categoryId: string }> = (() => {
     if (!selectedPhase) return [];
     return selectedPhase.productIds.flatMap((id) => {
-      for (const cat of productCategories) {
+      for (const cat of categories) {
         const p = cat.products.find((p) => p.id === id);
         if (p) return [{ product: p, categoryId: cat.id }];
       }
@@ -586,7 +587,7 @@ export default function ProductWizard({ isOpen, onClose }: ProductWizardProps) {
                 <div className="space-y-5">
                   <h3 className="text-xl font-bold text-gray-900">{t.selectProductCat}</h3>
                   <div className="flex flex-col gap-3">
-                    {productCategories.map((cat) => {
+                    {categories.map((cat) => {
                       const icon = {
                         "microorganism-products": <FlaskConical className="w-5 h-5" />,
                         "solid-fertilizers": <Beaker className="w-5 h-5" />,

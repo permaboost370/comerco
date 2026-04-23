@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useLocale } from "next-intl";
 import { Sparkles, ChevronRight } from "lucide-react";
 import ProductWizard from "@/components/wizard/ProductWizard";
+import type { ProductCategory } from "@/lib/products";
 
 const crops = [
   { emoji: "🍅", label: "Ντομάτα" },
@@ -31,7 +32,11 @@ const stepsEn = [
   { label: "See the products" },
 ];
 
-export default function WizardSection() {
+export default function WizardSection({
+  categories,
+}: {
+  categories: ProductCategory[];
+}) {
   const locale = useLocale();
   const isEn = locale === "en";
   const [isOpen, setIsOpen] = useState(false);
@@ -153,7 +158,7 @@ export default function WizardSection() {
         </div>
       </section>
 
-      <ProductWizard isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <ProductWizard isOpen={isOpen} onClose={() => setIsOpen(false)} categories={categories} />
     </>
   );
 }

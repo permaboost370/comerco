@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, FlaskConical, Boxes, Droplets, Sprout, Pipette, TreeDeciduous, Building2, Users, MessageSquare, Shield } from "lucide-react";
-import { productCategories } from "@/data/products";
+import type { ProductCategory } from "@/lib/products";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   FlaskConical,
@@ -15,7 +15,11 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   TreeDeciduous,
 };
 
-export default function Footer() {
+export default function Footer({
+  categories,
+}: {
+  categories: ProductCategory[];
+}) {
   const t = useTranslations("footer");
   const tc = useTranslations("common");
   const locale = useLocale();
@@ -86,7 +90,7 @@ export default function Footer() {
               {t("products")}
             </h3>
             <div className="space-y-2">
-              {productCategories.map((category) => {
+              {categories.map((category) => {
                 const Icon = iconMap[category.icon] || Sprout;
                 return (
                   <Link

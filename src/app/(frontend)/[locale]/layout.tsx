@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { locales } from "@/i18n/config";
+import { getProductCategories } from "@/lib/products";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CookieConsent from "@/components/CookieConsent";
@@ -25,15 +26,18 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  // Get messages for the current locale
-  const messages = await getMessages();
+  // Get messages + categories in parallel
+  const [messages, categories] = await Promise.all([
+    getMessages(),
+    getProductCategories(),
+  ]);
 
   return (
     <NextIntlClientProvider messages={messages}>
       <div className="flex min-h-screen flex-col">
-        <Header />
+        <Header categories={categories} />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <Footer categories={categories} />
         <CookieConsent />
         <ScrollToTop />
       </div>

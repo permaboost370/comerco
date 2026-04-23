@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, ChevronDown, Leaf, FlaskConical, Boxes, Droplets, Sprout, Pipette, TreeDeciduous, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { productCategories } from "@/data/products";
+import type { ProductCategory } from "@/lib/products";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import SearchModal from "@/components/SearchModal";
 
@@ -22,7 +22,11 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   TreeDeciduous,
 };
 
-export default function Header() {
+export default function Header({
+  categories,
+}: {
+  categories: ProductCategory[];
+}) {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -98,7 +102,7 @@ export default function Header() {
                             </Link>
                           </div>
                           <div className="grid grid-cols-2 gap-4">
-                            {productCategories.map((category) => {
+                            {categories.map((category) => {
                               const Icon = iconMap[category.icon] || Leaf;
                               return (
                                 <Link
@@ -190,7 +194,7 @@ export default function Header() {
                       </Link>
                       {link.hasMegaMenu && (
                         <div className="ml-4 mt-1 space-y-0.5 border-l-2 border-primary/20 pl-4">
-                          {productCategories.map((category) => (
+                          {categories.map((category) => (
                             <Link
                               key={category.id}
                               href={`/products/${category.id}`}
@@ -219,7 +223,7 @@ export default function Header() {
       </div>
 
       {/* Search Modal */}
-      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} categories={categories} />
     </header>
   );
 }
