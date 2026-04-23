@@ -10,7 +10,8 @@
     "lint": "eslint",
     "payload": "payload",
     "generate:types": "payload generate:types",
-    "generate:importmap": "payload generate:importmap"
+    "generate:importmap": "payload generate:importmap",
+    "migrate:products": "tsx --env-file=.env.local src/scripts/migrate-products.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.84.0",

@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
-import { productCategories } from "@/data/products";
+import { getProductCategories } from "@/lib/products";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://comerco.gr";
   const currentDate = new Date().toISOString();
 
@@ -99,7 +99,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Product category pages
+  const productCategories = await getProductCategories();
   const categoryPages = productCategories.flatMap((category) => [
     {
       url: `${baseUrl}/el/products/${category.id}`,

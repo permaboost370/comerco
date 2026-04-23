@@ -7,10 +7,9 @@
  * Idempotent — existing records (matched by slug) are skipped, not duplicated.
  * Product images are not migrated; upload them through the admin UI.
  */
-import 'dotenv/config'
 import { getPayload } from 'payload'
-import config from '../payload.config.js'
-import { productCategories } from '../data/products.js'
+import config from '../payload.config'
+import { productCategories } from '../data/products'
 
 async function main() {
   const payload = await getPayload({ config })
