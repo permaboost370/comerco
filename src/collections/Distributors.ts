@@ -18,6 +18,10 @@ const GREECE_REGION_OPTIONS = [
 
 export const Distributors: CollectionConfig = {
   slug: 'distributors',
+  labels: {
+    singular: { en: 'Distributor', el: 'Διανομέας' },
+    plural: { en: 'Distributors', el: 'Διανομείς' },
+  },
   admin: {
     useAsTitle: 'region',
     defaultColumns: ['region', 'company', 'regionIds', 'order'],

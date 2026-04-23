@@ -4,6 +4,10 @@ import { isAdmin, isAdminField, isSelfOrAdmin } from '../access/roles'
 export const Users: CollectionConfig = {
   slug: 'users',
   auth: true,
+  labels: {
+    singular: { en: 'User', el: 'Χρήστης' },
+    plural: { en: 'Users', el: 'Χρήστες' },
+  },
   admin: {
     useAsTitle: 'email',
     defaultColumns: ['email', 'role'],
@@ -28,9 +32,10 @@ export const Users: CollectionConfig = {
       type: 'select',
       required: true,
       defaultValue: 'editor',
+      label: { en: 'Role', el: 'Ρόλος' },
       options: [
-        { label: 'Administrator', value: 'admin' },
-        { label: 'Editor', value: 'editor' },
+        { label: { en: 'Administrator', el: 'Διαχειριστής' }, value: 'admin' },
+        { label: { en: 'Editor', el: 'Συντάκτης' }, value: 'editor' },
       ],
       access: {
         // Only admins can change a user's role (editors can't promote themselves)

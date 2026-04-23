@@ -3,8 +3,8 @@ import type { CollectionConfig } from 'payload'
 export const WizardCropCategories: CollectionConfig = {
   slug: 'wizard-crop-categories',
   labels: {
-    singular: 'Wizard Crop Category',
-    plural: 'Wizard Crop Categories',
+    singular: { en: 'Wizard Crop Category', el: 'Κατηγορία Καλλιέργειας (Wizard)' },
+    plural: { en: 'Wizard Crop Categories', el: 'Κατηγορίες Καλλιεργειών (Wizard)' },
   },
   admin: {
     useAsTitle: 'name',

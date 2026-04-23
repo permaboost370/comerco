@@ -7,7 +7,7 @@ import type { GlobalConfig } from 'payload'
  */
 export const Menu: GlobalConfig = {
   slug: 'menu',
-  label: 'Menu',
+  label: { en: 'Menu', el: 'Μενού' },
   admin: {
     description: 'The main site navigation. Drag to reorder. New CMS pages created in the Pages collection do not appear in the nav until you add them here.',
   },
@@ -16,7 +16,11 @@ export const Menu: GlobalConfig = {
     {
       name: 'items',
       type: 'array',
-      labels: { singular: 'Menu item', plural: 'Menu items' },
+      label: { en: 'Items', el: 'Στοιχεία' },
+      labels: {
+        singular: { en: 'Menu item', el: 'Στοιχείο μενού' },
+        plural: { en: 'Menu items', el: 'Στοιχεία μενού' },
+      },
       minRows: 1,
       fields: [
         {
@@ -24,6 +28,7 @@ export const Menu: GlobalConfig = {
           type: 'text',
           required: true,
           localized: true,
+          label: { en: 'Label', el: 'Ετικέτα' },
           admin: { description: 'The label shown in the nav (e.g. "Products"). Translated per locale.' },
         },
         {
@@ -31,10 +36,11 @@ export const Menu: GlobalConfig = {
           type: 'select',
           required: true,
           defaultValue: 'builtin',
+          label: { en: 'Link type', el: 'Τύπος συνδέσμου' },
           options: [
-            { label: 'Built-in route', value: 'builtin' },
-            { label: 'CMS page', value: 'page' },
-            { label: 'Custom URL', value: 'url' },
+            { label: { en: 'Built-in route', el: 'Υπάρχουσα σελίδα' }, value: 'builtin' },
+            { label: { en: 'CMS page', el: 'Σελίδα CMS' }, value: 'page' },
+            { label: { en: 'Custom URL', el: 'Δικό σας URL' }, value: 'url' },
           ],
         },
         {
@@ -74,6 +80,7 @@ export const Menu: GlobalConfig = {
           name: 'openInNewTab',
           type: 'checkbox',
           defaultValue: false,
+          label: { en: 'Open in new tab', el: 'Άνοιγμα σε νέα καρτέλα' },
           admin: {
             condition: (_, siblingData) => siblingData?.type === 'url',
             description: 'Open this link in a new browser tab.',
@@ -83,6 +90,7 @@ export const Menu: GlobalConfig = {
           name: 'hasMegaMenu',
           type: 'checkbox',
           defaultValue: false,
+          label: { en: 'Show product mega-menu', el: 'Εμφάνιση μεγα-μενού προϊόντων' },
           admin: {
             description: 'If checked, a mega-menu with all product categories appears on hover. Typically only for the "Products" item.',
           },

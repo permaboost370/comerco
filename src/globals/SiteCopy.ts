@@ -28,7 +28,7 @@ const longText = (name: string, label: string) => ({
 
 export const NavCopy: GlobalConfig = {
   slug: 'nav-copy',
-  label: 'Navigation & Footer',
+  label: { en: 'Navigation & Footer', el: 'Πλοήγηση & Υποσέλιδο' },
   admin: {
     description: 'Top-nav labels, footer headings, and shared UI strings used across every page.',
   },
@@ -39,7 +39,7 @@ export const NavCopy: GlobalConfig = {
       tabs: [
         {
           name: 'common',
-          label: 'Common',
+          label: { en: 'Common', el: 'Κοινά' },
           fields: [
             text('home', 'Home'),
             text('products', 'Products (nav)'),
@@ -58,7 +58,7 @@ export const NavCopy: GlobalConfig = {
         },
         {
           name: 'header',
-          label: 'Header',
+          label: { en: 'Header', el: 'Κεφαλίδα' },
           fields: [
             text('ourProducts', 'Our Products (mega-menu title)'),
             text('viewAllProducts', 'View All Products (mega-menu CTA)'),
@@ -66,7 +66,7 @@ export const NavCopy: GlobalConfig = {
         },
         {
           name: 'footer',
-          label: 'Footer',
+          label: { en: 'Footer', el: 'Υποσέλιδο' },
           fields: [
             longText('description', 'Description'),
             text('products', 'Products heading'),
@@ -83,7 +83,7 @@ export const NavCopy: GlobalConfig = {
 
 export const HomeCopy: GlobalConfig = {
   slug: 'home-copy',
-  label: 'Home Page',
+  label: { en: 'Home Page (legacy copy)', el: 'Κείμενα Αρχικής (παλαιό)' },
   admin: { description: 'Content that appears on the homepage.' },
   access: { read: () => true },
   fields: [
@@ -92,7 +92,7 @@ export const HomeCopy: GlobalConfig = {
       tabs: [
         {
           name: 'hero',
-          label: 'Hero',
+          label: { en: 'Hero', el: 'Κεντρικό Μπάνερ' },
           fields: [
             text('title', 'Title'),
             text('titleHighlight', 'Title highlight (colored part)'),
@@ -105,7 +105,7 @@ export const HomeCopy: GlobalConfig = {
         },
         {
           name: 'mission',
-          label: 'Mission',
+          label: { en: 'Mission', el: 'Αποστολή' },
           fields: [
             text('title', 'Title'),
             text('description1', 'Description part 1'),
@@ -125,7 +125,7 @@ export const HomeCopy: GlobalConfig = {
         },
         {
           name: 'stats',
-          label: 'Stats',
+          label: { en: 'Stats', el: 'Στατιστικά' },
           fields: [
             text('title', 'Title'),
             text('years', 'Years label'),
@@ -136,7 +136,7 @@ export const HomeCopy: GlobalConfig = {
         },
         {
           name: 'showcase',
-          label: 'Showcase',
+          label: { en: 'Showcase', el: 'Παρουσίαση' },
           fields: [
             text('title', 'Title'),
             longText('subtitle', 'Subtitle'),
@@ -154,7 +154,7 @@ export const HomeCopy: GlobalConfig = {
 
 export const AboutCopy: GlobalConfig = {
   slug: 'about-copy',
-  label: 'About Page',
+  label: { en: 'About Page', el: 'Σελίδα Εταιρείας' },
   admin: { description: 'Content on the /about page.' },
   access: { read: () => true },
   fields: [
@@ -163,7 +163,7 @@ export const AboutCopy: GlobalConfig = {
       tabs: [
         {
           name: 'about',
-          label: 'About',
+          label: { en: 'About', el: 'Εταιρεία' },
           fields: [
             text('title', 'Title'),
             longText('subtitle', 'Subtitle'),
@@ -219,7 +219,7 @@ export const AboutCopy: GlobalConfig = {
 
 export const ProductsCopy: GlobalConfig = {
   slug: 'products-copy',
-  label: 'Products Page',
+  label: { en: 'Products Page', el: 'Σελίδα Προϊόντων' },
   admin: { description: 'Copy for the /products listing and category pages.' },
   access: { read: () => true },
   fields: [
@@ -228,7 +228,7 @@ export const ProductsCopy: GlobalConfig = {
       tabs: [
         {
           name: 'products',
-          label: 'Products',
+          label: { en: 'Products', el: 'Προϊόντα' },
           fields: [
             text('title', 'Title'),
             longText('subtitle', 'Subtitle'),
@@ -257,7 +257,7 @@ export const ProductsCopy: GlobalConfig = {
 
 export const DistributorsCopy: GlobalConfig = {
   slug: 'distributors-copy',
-  label: 'Distributors Page',
+  label: { en: 'Distributors Page', el: 'Σελίδα Διανομέων' },
   admin: { description: 'Copy for the /distributors page.' },
   access: { read: () => true },
   fields: [
@@ -266,7 +266,7 @@ export const DistributorsCopy: GlobalConfig = {
       tabs: [
         {
           name: 'distributors',
-          label: 'Distributors',
+          label: { en: 'Distributors', el: 'Διανομείς' },
           fields: [
             text('title', 'Title'),
             longText('subtitle', 'Subtitle'),
@@ -291,7 +291,7 @@ export const DistributorsCopy: GlobalConfig = {
 
 export const ContactCopy: GlobalConfig = {
   slug: 'contact-copy',
-  label: 'Contact Page',
+  label: { en: 'Contact Page', el: 'Σελίδα Επικοινωνίας' },
   admin: { description: 'Copy for the /contact page.' },
   access: { read: () => true },
   fields: [
@@ -300,7 +300,7 @@ export const ContactCopy: GlobalConfig = {
       tabs: [
         {
           name: 'contact',
-          label: 'Contact',
+          label: { en: 'Contact', el: 'Επικοινωνία' },
           fields: [
             text('title', 'Title'),
             longText('subtitle', 'Subtitle'),
@@ -325,7 +325,7 @@ export const ContactCopy: GlobalConfig = {
 
 export const AnimalFeedCopy: GlobalConfig = {
   slug: 'animal-feed-copy',
-  label: 'Animal Feed Page',
+  label: { en: 'Animal Feed Page', el: 'Σελίδα Ζωοτροφών' },
   admin: { description: 'Copy for the /animal-feed page.' },
   access: { read: () => true },
   fields: [
@@ -334,7 +334,7 @@ export const AnimalFeedCopy: GlobalConfig = {
       tabs: [
         {
           name: 'animalFeed',
-          label: 'Animal Feed',
+          label: { en: 'Animal Feed', el: 'Ζωοτροφές' },
           fields: [
             text('title', 'Title'),
             longText('subtitle', 'Subtitle'),
@@ -349,7 +349,7 @@ export const AnimalFeedCopy: GlobalConfig = {
 
 export const CookiesCopy: GlobalConfig = {
   slug: 'cookies-copy',
-  label: 'Cookies Banner',
+  label: { en: 'Cookies Banner', el: 'Ειδοποίηση Cookies' },
   admin: { description: 'Cookie consent banner and settings dialog.' },
   access: { read: () => true },
   fields: [
@@ -358,7 +358,7 @@ export const CookiesCopy: GlobalConfig = {
       tabs: [
         {
           name: 'cookies',
-          label: 'Cookies',
+          label: { en: 'Cookies', el: 'Cookies' },
           fields: [
             text('title', 'Banner title'),
             longText('description', 'Banner description'),

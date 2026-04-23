@@ -8,7 +8,7 @@ import { ALL_SECTION_BLOCKS } from '../blocks/sectionBlocks'
  */
 export const HomePage: GlobalConfig = {
   slug: 'home-page',
-  label: 'Home Page',
+  label: { en: 'Home Page', el: 'Αρχική Σελίδα' },
   admin: {
     description: 'The homepage layout. Add, remove, or reorder sections.',
   },
@@ -17,6 +17,7 @@ export const HomePage: GlobalConfig = {
     {
       name: 'sections',
       type: 'blocks',
+      label: { en: 'Sections', el: 'Ενότητες' },
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       blocks: [...ALL_SECTION_BLOCKS] as any,
       required: true,

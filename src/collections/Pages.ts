@@ -20,7 +20,10 @@ const RESERVED_SLUGS = new Set([
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
-  labels: { singular: 'Page', plural: 'Pages' },
+  labels: {
+    singular: { en: 'Page', el: 'Σελίδα' },
+    plural: { en: 'Pages', el: 'Σελίδες' },
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
@@ -33,6 +36,7 @@ export const Pages: CollectionConfig = {
       type: 'text',
       required: true,
       localized: true,
+      label: { en: 'Title', el: 'Τίτλος' },
       admin: { description: 'Shown as the page <title> and in the breadcrumb. Translated per locale.' },
     },
     {
@@ -58,6 +62,7 @@ export const Pages: CollectionConfig = {
     {
       name: 'sections',
       type: 'blocks',
+      label: { en: 'Sections', el: 'Ενότητες' },
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       blocks: [...ALL_SECTION_BLOCKS] as any,
       required: true,
