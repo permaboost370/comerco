@@ -26,7 +26,7 @@ export const getSiteMessages = cache(async (locale: 'el' | 'en'): Promise<Messag
 
   const messages: Messages = {}
   entries.forEach(([, namespaces], i) => {
-    const doc = docs[i] as Record<string, unknown>
+    const doc = docs[i] as unknown as Record<string, unknown>
     for (const ns of namespaces) {
       const section = doc[ns]
       if (section && typeof section === 'object') {
