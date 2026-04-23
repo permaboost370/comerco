@@ -73,6 +73,7 @@ export interface Config {
     products: Product;
     distributors: Distributor;
     'wizard-crop-categories': WizardCropCategory;
+    pages: Page;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,6 +87,7 @@ export interface Config {
     products: ProductsSelect<false> | ProductsSelect<true>;
     distributors: DistributorsSelect<false> | DistributorsSelect<true>;
     'wizard-crop-categories': WizardCropCategoriesSelect<false> | WizardCropCategoriesSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -97,6 +99,7 @@ export interface Config {
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('el' | 'en') | ('el' | 'en')[];
   globals: {
     'home-page': HomePage;
+    menu: Menu;
     'nav-copy': NavCopy;
     'home-copy': HomeCopy;
     'about-copy': AboutCopy;
@@ -108,6 +111,7 @@ export interface Config {
   };
   globalsSelect: {
     'home-page': HomePageSelect<false> | HomePageSelect<true>;
+    menu: MenuSelect<false> | MenuSelect<true>;
     'nav-copy': NavCopySelect<false> | NavCopySelect<true>;
     'home-copy': HomeCopySelect<false> | HomeCopySelect<true>;
     'about-copy': AboutCopySelect<false> | AboutCopySelect<true>;
@@ -362,6 +366,173 @@ export interface WizardCropCategory {
   createdAt: string;
 }
 /**
+ * Custom pages. Each page is a stack of the same blocks as the homepage. Reach a page at /<locale>/<slug>. After creating, remember to add it to the Menu if you want it in the nav.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  /**
+   * Shown as the page <title> and in the breadcrumb. Translated per locale.
+   */
+  title: string;
+  /**
+   * URL path segment (e.g. "news"). Reached at /<locale>/<slug>. Cannot be one of the reserved routes (products, about, contact, distributors, animal-feed, privacy-policy, admin, api).
+   */
+  slug: string;
+  /**
+   * The content of the page. Add, remove, or reorder sections.
+   */
+  sections: (
+    | {
+        title: string;
+        /**
+         * Colored part of the title.
+         */
+        titleHighlight?: string | null;
+        description?: string | null;
+        image: number | Media;
+        primaryCta: {
+          label: string;
+          /**
+           * e.g. /products
+           */
+          href: string;
+        };
+        secondaryCta?: {
+          label?: string | null;
+          href?: string | null;
+        };
+        stats?:
+          | {
+              /**
+               * e.g. "14+"
+               */
+              value: string;
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'hero';
+      }
+    | {
+        title: string;
+        /**
+         * Mixed text + bold highlight pairs.
+         */
+        paragraphs?:
+          | {
+              before?: string | null;
+              /**
+               * Bold emphasis
+               */
+              highlight?: string | null;
+              after?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        resultsTitle?: string | null;
+        results?:
+          | {
+              icon: 'Sprout' | 'Leaf' | 'TreeDeciduous' | 'FlaskConical' | 'Droplets' | 'Sparkles';
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        futureVision?: string | null;
+        sustainableFuture?: string | null;
+        futureVisionEnd?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'mission';
+      }
+    | {
+        title: string;
+        subtitle?: string | null;
+        tagline?: string | null;
+        images?:
+          | {
+              image: number | Media;
+              caption?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'imageShowcase';
+      }
+    | {
+        image: number | Media;
+        /**
+         * Alt text for accessibility.
+         */
+        alt?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'fullWidthImage';
+      }
+    | {
+        /**
+         * Small badge above title (e.g. "Product Finder").
+         */
+        badge?: string | null;
+        title: string;
+        titleHighlight?: string | null;
+        description?: string | null;
+        ctaLabel: string;
+        /**
+         * Numbered step labels shown next to the CTA.
+         */
+        steps?:
+          | {
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        /**
+         * Decorative crop tiles (emoji + label). Desktop only.
+         */
+        cropPreview?:
+          | {
+              emoji: string;
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        /**
+         * e.g. "+ many more crops →"
+         */
+        moreLabel?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'wizard';
+      }
+    | {
+        title: string;
+        subtitle?: string | null;
+        viewAllLabel?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'productsOverview';
+      }
+  )[];
+  /**
+   * Optional overrides for search engines.
+   */
+  seo?: {
+    /**
+     * Defaults to the page title.
+     */
+    metaTitle?: string | null;
+    metaDescription?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -408,6 +579,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'wizard-crop-categories';
         value: number | WizardCropCategory;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -573,6 +748,139 @@ export interface WizardCropCategoriesSelect<T extends boolean = true> {
         emoji?: T;
         products?: T;
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  sections?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              title?: T;
+              titleHighlight?: T;
+              description?: T;
+              image?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mission?:
+          | T
+          | {
+              title?: T;
+              paragraphs?:
+                | T
+                | {
+                    before?: T;
+                    highlight?: T;
+                    after?: T;
+                    id?: T;
+                  };
+              resultsTitle?: T;
+              results?:
+                | T
+                | {
+                    icon?: T;
+                    text?: T;
+                    id?: T;
+                  };
+              futureVision?: T;
+              sustainableFuture?: T;
+              futureVisionEnd?: T;
+              id?: T;
+              blockName?: T;
+            };
+        imageShowcase?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              tagline?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        fullWidthImage?:
+          | T
+          | {
+              image?: T;
+              alt?: T;
+              id?: T;
+              blockName?: T;
+            };
+        wizard?:
+          | T
+          | {
+              badge?: T;
+              title?: T;
+              titleHighlight?: T;
+              description?: T;
+              ctaLabel?: T;
+              steps?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              cropPreview?:
+                | T
+                | {
+                    emoji?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              moreLabel?: T;
+              id?: T;
+              blockName?: T;
+            };
+        productsOverview?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              viewAllLabel?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -763,6 +1071,47 @@ export interface HomePage {
         blockType: 'productsOverview';
       }
   )[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * The main site navigation. Drag to reorder. New CMS pages created in the Pages collection do not appear in the nav until you add them here.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "menu".
+ */
+export interface Menu {
+  id: number;
+  items?:
+    | {
+        /**
+         * The label shown in the nav (e.g. "Products"). Translated per locale.
+         */
+        label: string;
+        type: 'builtin' | 'page' | 'url';
+        /**
+         * Pick one of the existing static pages.
+         */
+        builtinTarget?: ('/' | '/products' | '/distributors' | '/about' | '/contact' | '/animal-feed') | null;
+        /**
+         * Pick a page from the Pages collection.
+         */
+        page?: (number | null) | Page;
+        /**
+         * Any absolute URL (https://...) or internal path (/something).
+         */
+        url?: string | null;
+        /**
+         * Open this link in a new browser tab.
+         */
+        openInNewTab?: boolean | null;
+        /**
+         * If checked, a mega-menu with all product categories appears on hover. Typically only for the "Products" item.
+         */
+        hasMegaMenu?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1165,6 +1514,27 @@ export interface HomePageSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "menu_select".
+ */
+export interface MenuSelect<T extends boolean = true> {
+  items?:
+    | T
+    | {
+        label?: T;
+        type?: T;
+        builtinTarget?: T;
+        page?: T;
+        url?: T;
+        openInNewTab?: T;
+        hasMegaMenu?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;

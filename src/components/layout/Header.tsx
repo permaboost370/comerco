@@ -9,6 +9,7 @@ import { Menu, ChevronDown, Leaf, FlaskConical, Boxes, Droplets, Sprout, Pipette
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import type { ProductCategory } from "@/lib/products";
+import type { MenuItem } from "@/lib/menu";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import SearchModal from "@/components/SearchModal";
 
@@ -24,8 +25,10 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 export default function Header({
   categories,
+  menu,
 }: {
   categories: ProductCategory[];
+  menu: MenuItem[];
 }) {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -34,13 +37,12 @@ export default function Header({
   const th = useTranslations("header");
   const locale = useLocale();
 
-  const navLinks = [
-    { name: t("home"), href: "/" },
-    { name: t("about"), href: "/about" },
-    { name: t("products"), href: "/products", hasMegaMenu: true },
-    { name: t("animalFeed"), href: "/animal-feed" },
-    { name: t("distributors"), href: "/distributors" },
-  ];
+  const navLinks = menu.map((item) => ({
+    name: item.label,
+    href: item.href,
+    hasMegaMenu: item.hasMegaMenu,
+    openInNewTab: item.openInNewTab,
+  }));
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/80 backdrop-blur-xl shadow-[0_2px_20px_-2px_rgba(0,0,0,0.1)] supports-[backdrop-filter]:bg-background/70">
